@@ -30,6 +30,7 @@ import {
   CheckCircle2,
   AlertTriangle,
   TrendingUp,
+  Menu,
   X,
 } from "lucide-react";
 
@@ -163,6 +164,7 @@ function App() {
     { from: "ai", text: "Merhaba, stok, müşteri, satış ve tarla işlemleri hakkında soru sorabilirsin." },
     { from: "ai", text: "Öneri: DAP Gübre kritik seviyeye yaklaşıyor. Yeni sipariş açılmalı." },
   ]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [salesData, setSalesData] = useState([
     { month: "Oca", value: 38500 },
@@ -462,7 +464,7 @@ function App() {
           </div>
           <div className="search"><Search size={14} /><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Ara..." /></div>
         </div>
-        {table}
+        <div className="tableContainer">{table}</div>
       </section>
     );
   }
@@ -487,7 +489,7 @@ function App() {
           <div className="group" key={group.title}>
             <small>{group.title}</small>
             {group.items.map(([id, title, Icon]) => (
-              <button key={id} onClick={() => { setPage(id); setSearch(""); setTableFilter('Tümü'); }} className={page === id ? "active" : ""}>
+              <button key={id} onClick={() => { setPage(id); setSearch(""); setTableFilter('Tümü'); setMobileMenuOpen(false); }} className={page === id ? "active" : ""}>
                 <Icon size={15} /> {title}
               </button>
             ))}
@@ -497,6 +499,9 @@ function App() {
 
       <main>
         <header>
+          <button className="menuToggle" onClick={() => setMobileMenuOpen((prev) => !prev)}>
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
           <div>
             <h1>{currentTitle}</h1>
             <p>{currentDesc}</p>

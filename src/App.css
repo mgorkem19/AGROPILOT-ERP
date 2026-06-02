@@ -204,6 +204,16 @@ td {
   color: #e5e7eb;
 }
 
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tableContainer table {
+  min-width: 720px;
+}
+
 .money { color: #22c55e; font-weight: 700; }
 
 .badge {
@@ -435,6 +445,23 @@ select,
   outline: none;
 }
 
+.menuToggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #17281f;
+  color: #e5e7eb;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 20;
+}
+
 input:disabled,
 select:disabled {
   opacity: .75;
@@ -516,4 +543,177 @@ option {
     grid-template-columns: 1fr;
   }
   .panelHead { flex-wrap: wrap; }
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  aside {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    transform: translateX(-100%);
+    transition: transform 220ms ease;
+    z-index: 30;
+    padding-top: 18px;
+    background: #060d09;
+  }
+
+  aside.open {
+    transform: translateX(0);
+  }
+
+  .backdrop {
+    display: block;
+  }
+
+  main {
+    padding: 18px;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #070f0b;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .menuToggle {
+    display: inline-flex;
+  }
+
+  header > div {
+    flex: 1;
+  }
+
+  header h1 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  header p {
+    font-size: 13px;
+    margin: 6px 0 0;
+  }
+
+  .stats,
+  .stats.four,
+  .dashGrid,
+  .profileGrid,
+  .barcodeGrid,
+  .calendarGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .panelHead {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .panelHead h3 {
+    font-size: 16px;
+  }
+
+  .panelHead .tabs,
+  .panelHead .search {
+    width: 100%;
+  }
+
+  .panelHead .tabs {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .tableContainer {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .tableContainer table {
+    min-width: 700px;
+  }
+
+  .profileGrid,
+  .barcodeGrid,
+  .calendarGrid {
+    gap: 14px;
+  }
+
+  .taskCard,
+  .farmerCard,
+  .barcodeCard,
+  .panel {
+    width: 100%;
+  }
+
+  .barcodeTools,
+  .aiSend {
+    flex-direction: column;
+  }
+
+  .barcodeTools button,
+  .aiSend button,
+  .primary,
+  aside button,
+  button {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .aiPanel {
+    max-width: none;
+  }
+
+  .chatBox {
+    max-height: 420px;
+    overflow-y: auto;
+  }
+
+  .msg {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .aiSend input {
+    width: 100%;
+  }
+
+  .fakeBarcode {
+    min-height: 46px;
+  }
+
+  .modalBox {
+    width: min(92vw, 430px);
+    margin: 0 12px;
+  }
+
+  .modalActions {
+    flex-direction: column;
+  }
+
+  .modalActions button {
+    width: 100%;
+  }
 }
