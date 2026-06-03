@@ -275,6 +275,7 @@ function App() {
   const saveCompanySettings = () => {
     if (typeof window === "undefined") return;
     window.localStorage.setItem("agropilot_company_settings", JSON.stringify(company));
+    alert("Firma ayarları kaydedildi");
   };
 
   const sendWhatsApp = (record = {}) => {
