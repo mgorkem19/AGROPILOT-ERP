@@ -27,7 +27,7 @@ aside {
   width: 240px;
   min-width: 240px;
   min-height: 100vh;
-  background: #353b45 !important;
+  background: #08101a !important;
   border-right: 1px solid rgba(255,255,255,0.04);
   padding: 26px 20px;
   position: sticky;
@@ -47,7 +47,7 @@ aside {
 
 .group small {
   display: block;
-  color: #c8ced6;
+  color: #94a3b8;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -74,7 +74,7 @@ aside button {
 aside button svg { color: #ffffff; stroke: #ffffff; }
 
 aside button:hover {
-  background: #4a525d;
+  background: #111827;
   color: #ffffff !important;
 }
 
@@ -84,8 +84,14 @@ aside button:hover svg {
 }
 
 aside button.active {
-  background: #dff5e7;
-  color: #1f2937;
+  background: #16202b;
+  color: #ffffff;
+  border-left: 3px solid #22c55e;
+}
+
+aside button.active svg {
+  color: #22c55e;
+  stroke: #22c55e;
 }
 
 main {
