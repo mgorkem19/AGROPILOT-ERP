@@ -17,7 +17,7 @@ body {
 aside {
   width: 240px;
   min-height: 100vh;
-  background: #0b1710;
+  background: #f8fafc;
   border-right: 1px solid #e5e7eb;
   padding: 26px 20px;
   position: sticky;
@@ -25,7 +25,7 @@ aside {
 }
 
 .logo {
-  color: #bbf7d0;
+  color: #0f172a;
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -36,7 +36,7 @@ aside {
 
 .group small {
   display: block;
-  color: #94a3b8;
+  color: #64748b;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -49,7 +49,7 @@ aside button {
   align-items: center;
   gap: 10px;
   background: transparent;
-  color: #edf9f0;
+  color: #0f172a;
   border: 1px solid transparent;
   padding: 12px 14px;
   border-radius: 12px;
@@ -62,9 +62,9 @@ aside button {
 
 aside button:hover,
 aside button.active {
-  background: rgba(34,197,94,0.12);
-  color: #f8fff8;
-  border-color: rgba(255,255,255,0.12);
+  background: #e5f7ee;
+  color: #07543e;
+  border-color: #d1fae5;
 }
 
 main {
@@ -167,15 +167,15 @@ header p {
 .panelHead h3 {
   margin: 0;
   font-size: 16px;
-  color: #e4f8e5;
+  color: #111827;
   margin-right: auto;
 }
 
 .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .tabs button {
-  background: rgba(11,24,17,0.9);
-  color: #9fb5a7;
+  background: #f8fafc;
+  color: #475569;
   border: 1px solid transparent;
   padding: 8px 12px;
   font-size: 12px;
@@ -185,14 +185,14 @@ header p {
 }
 
 .tabs button:hover {
-  background: rgba(34,197,94,0.12);
-  color: #d8ffdf;
+  background: #ecfdf5;
+  color: #134e4a;
 }
 
 .tabs .selected {
-  background: rgba(34,197,94,0.18);
-  color: #e8ffe8;
-  border-color: rgba(34,197,94,0.3);
+  background: #22c55e;
+  color: #ffffff;
+  border-color: #16a34a;
   font-weight: 700;
 }
 
@@ -200,8 +200,8 @@ header p {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(9,20,15,0.9);
-  border: 1px solid rgba(34,197,94,0.14);
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
   border-radius: 14px;
   padding: 8px 12px;
 }
@@ -210,7 +210,7 @@ header p {
   width: 180px;
   border: 0;
   background: transparent;
-  color: #eef9eb;
+  color: #1f2937;
   padding: 10px 0;
   outline: none;
 }
@@ -260,7 +260,7 @@ tbody tr:hover td {
 
 .badge {
   background: rgba(34,197,94,0.16);
-  color: #dcffd7;
+  color: #134e4a;
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 11px;
@@ -336,6 +336,7 @@ tbody tr:hover td {
 
 .taskCard h4 { margin:0 0 8px 0; }
 .taskCard .status { padding:8px 10px; border-radius:10px; background: #f8fafc; color:#475569; display:inline-block; }
+.taskCard .status { color: #0f172a; }
 .taskCard .status.danger { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
 
 .msg { padding:12px 14px; border-radius:16px; box-shadow: 0 8px 18px rgba(15,23,42,0.08); }
@@ -425,7 +426,7 @@ tbody tr:hover td {
   margin-bottom: 7px;
 }
 
-.task span { color: #9ca3af; }
+.task span { color: #6b7280; }
 .task em { color: #22c55e; font-style: normal; }
 
 .barcodeTools {
@@ -469,6 +470,7 @@ tbody tr:hover td {
 .msg.ai {
   background: #07110d;
   border: 1px solid #17281f;
+  color: #f8fafc;
 }
 
 .msg.user {
@@ -626,7 +628,7 @@ option {
   right: 14px;
   top: 14px;
   background: transparent;
-  color: white;
+  color: #475569;
   border: 0;
   cursor: pointer;
 }
