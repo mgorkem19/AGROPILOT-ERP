@@ -332,6 +332,25 @@ tbody tr:hover td {
   border-color: #16a34a;
 }
 
+.actions button.whatsappBtn {
+  padding: 10px 14px;
+  background: #ffffff;
+  color: #22c55e;
+  border: 1px solid #22c55e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.actions button.whatsappBtn:hover {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #16a34a;
+  transform: translateY(-1px);
+}
+
 .dashGrid {
   display: grid;
   grid-template-columns: 2fr 1.2fr;

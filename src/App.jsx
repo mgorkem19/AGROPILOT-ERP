@@ -18,7 +18,6 @@ import {
   Trash2,
   Search,
   Plus,
-  MessageCircle,
   Barcode,
   MapPinned,
   CalendarDays,
@@ -35,10 +34,20 @@ import {
   X,
 } from "lucide-react";
 
-const WhatsAppIcon = ({ size = 14 }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.148-1.758-.867-2.03-.967-.272-.1-.47-.148-.67.15-.197.297-.767.967-.94 1.166-.173.197-.347.222-.644.074-.297-.148-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.15-.173.2-.297.3-.495.1-.197.05-.371-.025-.52-.075-.148-.67-1.612-.92-2.21-.242-.579-.487-.5-.67-.51-.173-.007-.371-.007-.568-.007-.197 0-.52.074-.79.371-.272.296-1.04 1.016-1.04 2.479 0 1.462 1.065 2.874 1.213 3.074.15.197 2.095 3.2 5.076 4.487.71.307 1.262.49 1.693.627.71.227 1.36.195 1.872.118.572-.085 1.758-.719 2.007-1.415.248-.697.248-1.29.173-1.414-.075-.123-.272-.197-.57-.345z"/>
-    <path d="M20.52 3.48C18.26 1.22 15.28 0 12.04 0 5.4 0 0 5.4 0 12.04c0 2.12.56 4.21 1.62 6.03L0 24l5.9-1.55c1.78.97 3.7 1.48 5.64 1.48h.01c6.64 0 12.04-5.4 12.04-12.04 0-3.24-1.22-6.22-3.48-8.52z"/>
+const WhatsAppIcon = ({ size = 18 }) => (
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="12" cy="12" r="11" />
+    <path d="M16.56 12a4.56 4.56 0 0 1-9.12 0M12 8v8" />
   </svg>
 );
 
@@ -543,7 +552,7 @@ function App() {
               <button onClick={() => openModal("Detay", "farmerCards", f)}><Eye size={14} /></button>
               <button onClick={() => openModal("Düzenle", "farmerCards", f)}><Pencil size={14} /></button>
               <button onClick={() => deleteFarmerRecord(f)}><Trash2 size={14} /></button>
-              <button onClick={() => sendWhatsApp(f)}><WhatsAppIcon size={14} /></button>
+              <button className="whatsappBtn" onClick={() => sendWhatsApp(f)}><WhatsAppIcon size={18} /></button>
             </div>
           </div>
         ))}
@@ -710,7 +719,7 @@ function App() {
               <td className="actions">
                 <button onClick={() => openModal("Detay", module, row)}><Eye size={14} /></button>
                 <button onClick={() => openModal("Düzenle", module, row)}><Pencil size={14} /></button>
-                <button onClick={() => sendWhatsApp(row)}><MessageCircle size={14} /></button>
+                <button className="whatsappBtn" onClick={() => sendWhatsApp(row)}><WhatsAppIcon size={18} /></button>
               {module === "offers" && (
                 <button className="pdfButton" onClick={() => openOfferPdf(row)}><Printer size={14} /> PDF</button>
               )}
