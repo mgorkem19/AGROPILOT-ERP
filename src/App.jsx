@@ -228,6 +228,58 @@ function App() {
     setModal({ type, module, record, values });
   };
 
+  const openOfferPdf = (offer) => {
+    const printWindow = window.open("", "_blank", "width=860,height=760");
+    if (!printWindow) return;
+
+    const escapeHtml = (value) => String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
+    const html = `<!DOCTYPE html>
+      <html lang="tr">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Teklif Önizleme - ${escapeHtml(offer.teklifNo)}</title>
+        <style>
+          body { margin:0; font-family: Arial, sans-serif; background: #07130f; color: #e5e7eb; }
+          .page { max-width: 820px; margin: 0 auto; padding: 36px; }
+          .brand { color: #7ee787; font-size: 28px; font-weight: 800; letter-spacing: 1px; margin-bottom: 24px; }
+          .card { background: #0b1710; border: 1px solid #17361f; border-radius: 18px; padding: 24px; }
+          .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+          .row label { color: #8fa791; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; display: block; margin-bottom: 6px; }
+          .row span { color: #f8fff3; font-size: 16px; font-weight: 700; }
+          .footer { margin-top: 28px; font-size: 13px; color: #9ca98f; }
+          .printBar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+          .printBtn { background: #22c55e; color: #04120a; border: none; border-radius: 12px; padding: 12px 18px; font-size: 14px; cursor: pointer; }
+          @media print { .printBar { display: none; } body { background: #fff; color: #000; } .card { border-color: #d1d5db; background: #fff; } }
+        </style>
+      </head>
+      <body>
+        <div class="page">
+          <div class="printBar">
+            <button class="printBtn" onclick="window.print();">Yazdır / PDF İndir</button>
+          </div>
+          <div class="card">
+            <div class="brand">AGROPILOT ERP</div>
+            <div class="row"><div><label>Teklif No</label><span>${escapeHtml(offer.teklifNo)}</span></div><div><label>Durum</label><span>${escapeHtml(offer.durum)}</span></div></div>
+            <div class="row"><div><label>Müşteri</label><span>${escapeHtml(offer.musteri)}</span></div><div><label>Şehir</label><span>${escapeHtml(offer.sehir)}</span></div></div>
+            <div class="row"><div><label>Tarih</label><span>${escapeHtml(offer.tarih)}</span></div><div><label>Geçerlilik</label><span>${escapeHtml(offer.gecerlilik)}</span></div></div>
+            <div class="row"><div style="flex:1"><label>Tutar</label><span>${escapeHtml(offer.tutar)}</span></div></div>
+            <div class="footer">Bu teklif AGROPILOT ERP demo sistemi üzerinden oluşturulmuştur.</div>
+          </div>
+        </div>
+      </body>
+      </html>`;
+
+    printWindow.document.write(html);
+    printWindow.document.close();
+    printWindow.focus();
+  };
+
   const saveModal = () => {
     if (!modal || modal.type === "Detay") return setModal(null);
     if (modal.type === "Sil") {
@@ -458,6 +510,9 @@ function App() {
                 <button onClick={() => openModal("Detay", module, row)}><Eye size={14} /></button>
                 <button onClick={() => openModal("Düzenle", module, row)}><Pencil size={14} /></button>
                 <button onClick={() => sendWhatsApp(row)}><MessageCircle size={14} /></button>
+              {module === "offers" && (
+                <button className="pdfButton" onClick={() => openOfferPdf(row)}><Printer size={14} /> PDF</button>
+              )}
                 <button onClick={() => openModal("Sil", module, row)}><Trash2 size={14} /></button>
               </td>
             </tr>

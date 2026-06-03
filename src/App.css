@@ -246,6 +246,12 @@ td {
   background: #0f2a1d;
 }
 
+.actions button.pdfButton {
+  min-width: 92px;
+  justify-content: center;
+  padding: 7px 12px;
+}
+
 .dashGrid {
   display: grid;
   grid-template-columns: 1.4fr .9fr;
