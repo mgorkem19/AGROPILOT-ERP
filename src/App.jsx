@@ -446,7 +446,10 @@ function App() {
                       onMouseMove={(e) => setTooltip((t) => t ? { ...t, x: e.clientX, y: e.clientY } : null)}
                       onMouseLeave={() => setTooltip(null)}
                     />
-                    <div className="barLabel">{s.month}<br/><span className="small">{formatMoney(s.value)}</span></div>
+                    <div className="barLabel">
+                      <span className="barAmount">{formatMoney(s.value)}</span>
+                      <span className="barMonth">{s.month}</span>
+                    </div>
                   </div>
                 );
               })}
