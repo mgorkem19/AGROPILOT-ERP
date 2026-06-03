@@ -27,7 +27,7 @@ aside {
   width: 240px;
   min-width: 240px;
   min-height: 100vh;
-  background: #34383e;
+  background: #4b5057;
   border-right: 1px solid #e5e7eb;
   padding: 26px 20px;
   position: sticky;
@@ -46,7 +46,7 @@ aside {
 
 .group small {
   display: block;
-  color: #b8bcc2;
+  color: #d6d9dd;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -71,13 +71,13 @@ aside button {
 }
 
 aside button:hover {
-  background: #40454c;
+  background: #5a6068;
   color: #ffffff;
 }
 
 aside button.active {
-  background: #4a5058;
-  color: #ffffff;
+  background: #eef2f7;
+  color: #1f2937;
 }
 
 main {
