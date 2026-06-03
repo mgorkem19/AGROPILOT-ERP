@@ -451,6 +451,47 @@ select,
   outline: none;
 }
 
+.companySettingsPanel {
+  display: grid;
+  gap: 18px;
+}
+
+.companySettingsForm {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.companySettingsForm label {
+  display: block;
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.companySettingsPreview {
+  background: #0b1710;
+  border: 1px solid #17281f;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.companySettingsPreview h4 {
+  margin: 0 0 14px;
+  color: #22c55e;
+}
+
+.companySettingsPreview img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid #17361f;
+}
+
+@media (max-width: 900px) {
+  .companySettingsForm {
+    grid-template-columns: 1fr;
+  }
+}
+
 .menuToggle {
   display: none;
   background: transparent;

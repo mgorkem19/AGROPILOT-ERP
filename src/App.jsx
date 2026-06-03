@@ -30,6 +30,7 @@ import {
   CheckCircle2,
   AlertTriangle,
   TrendingUp,
+  Settings,
   Menu,
   X,
 } from "lucide-react";
@@ -53,6 +54,7 @@ const menuGroups = [
       ["collections", "Tahsilatlar", ReceiptText],
       ["cashbank", "Kasa & Banka", Banknote],
       ["offers", "Teklifler", FileText],
+      ["companySettings", "Firma Ayarları", Settings],
     ],
   },
   {
@@ -148,6 +150,7 @@ const pageInfo = {
   collections: ["Tahsilatlar", "Ödeme ve tahsilat hareketlerini takip edin."],
   cashbank: ["Kasa & Banka", "Kasa, banka, gelir ve gider özetleri."],
   offers: ["Teklifler", "Müşteri tekliflerini oluşturun ve takip edin."],
+  companySettings: ["Firma Ayarları", "Teklif PDF'leri için şirket bilgilerini güncelleyin."],
   farmerCards: ["Çiftçi Kartı", "Çiftçinin tüm geçmişini tek ekranda görüntüleyin."],
   fieldTracking: ["Tarla Takibi", "Hangi tarlaya hangi ürün verildiğini takip edin."],
   calendar: ["Periyodik Takvim", "Yaklaşan ve geciken tarımsal işlemleri yönetin."],
@@ -199,6 +202,54 @@ function App() {
   const [tableFilter, setTableFilter] = useState("Tümü");
   const [calendarTab, setCalendarTab] = useState("Bugün");
   const [tooltip, setTooltip] = useState(null);
+  const [company, setCompany] = useState(() => {
+    if (typeof window === "undefined") return {
+      name: "AGROPILOT ERP",
+      logo: "",
+      phone: "",
+      email: "",
+      address: "",
+      taxOffice: "",
+      taxNumber: "",
+    };
+    try {
+      const stored = window.localStorage.getItem("agropilot_company");
+      if (!stored) return {
+        name: "AGROPILOT ERP",
+        logo: "",
+        phone: "",
+        email: "",
+        address: "",
+        taxOffice: "",
+        taxNumber: "",
+      };
+      const parsed = JSON.parse(stored);
+      return {
+        name: parsed.name || "AGROPILOT ERP",
+        logo: parsed.logo || "",
+        phone: parsed.phone || "",
+        email: parsed.email || "",
+        address: parsed.address || "",
+        taxOffice: parsed.taxOffice || "",
+        taxNumber: parsed.taxNumber || "",
+      };
+    } catch {
+      return {
+        name: "AGROPILOT ERP",
+        logo: "",
+        phone: "",
+        email: "",
+        address: "",
+        taxOffice: "",
+        taxNumber: "",
+      };
+    }
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem("agropilot_company", JSON.stringify(company));
+  }, [company]);
 
   const sendWhatsApp = (record = {}) => {
     const name = record.musteri || record.firma || record.ciftci || record.bayi || "müşterimiz";
@@ -239,6 +290,9 @@ function App() {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
 
+    const logoHtml = company.logo ? `<img class="companyLogo" src="${escapeHtml(company.logo)}" alt="Logo" />` : "";
+    const companyName = escapeHtml(company.name || "AGROPILOT ERP");
+
     const html = `<!DOCTYPE html>
       <html lang="tr">
       <head>
@@ -247,15 +301,20 @@ function App() {
         <style>
           body { margin:0; font-family: Arial, sans-serif; background: #07130f; color: #e5e7eb; }
           .page { max-width: 820px; margin: 0 auto; padding: 36px; }
-          .brand { color: #7ee787; font-size: 28px; font-weight: 800; letter-spacing: 1px; margin-bottom: 24px; }
           .card { background: #0b1710; border: 1px solid #17361f; border-radius: 18px; padding: 24px; }
+          .headerTop { display:flex; justify-content:space-between; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:24px; }
+          .brandInfo { display:flex; align-items:center; gap:14px; }
+          .companyLogo { width: 120px; max-height: 80px; object-fit: contain; border-radius: 12px; background: #07130f; }
+          .companyName { font-size: 22px; font-weight: 800; color: #7ee787; }
+          .companyContact { text-align:right; min-width: 220px; }
+          .companyContact div { color: #9ca98f; font-size: 13px; line-height:1.6; }
           .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
           .row label { color: #8fa791; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; display: block; margin-bottom: 6px; }
           .row span { color: #f8fff3; font-size: 16px; font-weight: 700; }
           .footer { margin-top: 28px; font-size: 13px; color: #9ca98f; }
           .printBar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
           .printBtn { background: #22c55e; color: #04120a; border: none; border-radius: 12px; padding: 12px 18px; font-size: 14px; cursor: pointer; }
-          @media print { .printBar { display: none; } body { background: #fff; color: #000; } .card { border-color: #d1d5db; background: #fff; } }
+          @media print { .printBar { display: none; } body { background: #fff; color: #000; } .card { border-color: #d1d5db; background: #fff; } .companyName { color: #000; } }
         </style>
       </head>
       <body>
@@ -264,12 +323,20 @@ function App() {
             <button class="printBtn" onclick="window.print();">Yazdır / PDF İndir</button>
           </div>
           <div class="card">
-            <div class="brand">AGROPILOT ERP</div>
+            <div class="headerTop">
+              <div class="brandInfo">${logoHtml}<div class="companyName">${companyName}</div></div>
+              <div class="companyContact">
+                ${company.address ? `<div>${escapeHtml(company.address)}</div>` : ""}
+                ${company.phone ? `<div>Tel: ${escapeHtml(company.phone)}</div>` : ""}
+                ${company.email ? `<div>${escapeHtml(company.email)}</div>` : ""}
+                ${company.taxOffice || company.taxNumber ? `<div>${escapeHtml(company.taxOffice)} ${escapeHtml(company.taxNumber)}</div>` : ""}
+              </div>
+            </div>
             <div class="row"><div><label>Teklif No</label><span>${escapeHtml(offer.teklifNo)}</span></div><div><label>Durum</label><span>${escapeHtml(offer.durum)}</span></div></div>
             <div class="row"><div><label>Müşteri</label><span>${escapeHtml(offer.musteri)}</span></div><div><label>Şehir</label><span>${escapeHtml(offer.sehir)}</span></div></div>
             <div class="row"><div><label>Tarih</label><span>${escapeHtml(offer.tarih)}</span></div><div><label>Geçerlilik</label><span>${escapeHtml(offer.gecerlilik)}</span></div></div>
             <div class="row"><div style="flex:1"><label>Tutar</label><span>${escapeHtml(offer.tutar)}</span></div></div>
-            <div class="footer">Bu teklif AGROPILOT ERP demo sistemi üzerinden oluşturulmuştur.</div>
+            <div class="footer">Bu teklif ${companyName} tarafından oluşturulmuştur.</div>
           </div>
         </div>
       </body>
@@ -463,6 +530,60 @@ function App() {
     </>
   );
 
+  const companySettingsPage = () => (
+    <section className="panel companySettingsPanel">
+      <div className="panelHead">
+        <h3>{pageInfo.companySettings[0]}</h3>
+      </div>
+      <div className="companySettingsForm">
+        <label>
+          Firma Adı
+          <input value={company.name} onChange={(e) => setCompany((prev) => ({ ...prev, name: e.target.value }))} placeholder="Firma adı" />
+        </label>
+        <label>
+          Logo URL
+          <input value={company.logo} onChange={(e) => setCompany((prev) => ({ ...prev, logo: e.target.value }))} placeholder="https://..." />
+        </label>
+        <label>
+          Logo Yükleme
+          <input type="file" accept="image/*" onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => setCompany((prev) => ({ ...prev, logo: reader.result || prev.logo }));
+            reader.readAsDataURL(file);
+          }} />
+        </label>
+        <label>
+          Telefon
+          <input value={company.phone} onChange={(e) => setCompany((prev) => ({ ...prev, phone: e.target.value }))} placeholder="Telefon" />
+        </label>
+        <label>
+          E-posta
+          <input value={company.email} onChange={(e) => setCompany((prev) => ({ ...prev, email: e.target.value }))} placeholder="E-posta" />
+        </label>
+        <label>
+          Adres
+          <input value={company.address} onChange={(e) => setCompany((prev) => ({ ...prev, address: e.target.value }))} placeholder="Adres" />
+        </label>
+        <label>
+          Vergi Dairesi
+          <input value={company.taxOffice} onChange={(e) => setCompany((prev) => ({ ...prev, taxOffice: e.target.value }))} placeholder="Vergi Dairesi" />
+        </label>
+        <label>
+          Vergi No
+          <input value={company.taxNumber} onChange={(e) => setCompany((prev) => ({ ...prev, taxNumber: e.target.value }))} placeholder="Vergi No" />
+        </label>
+      </div>
+      {company.logo && (
+        <div className="companyLogoPreview">
+          <h4>Logo Önizleme</h4>
+          <img src={company.logo} alt="Logo Önizleme" />
+        </div>
+      )}
+    </section>
+  );
+
   const aiPage = () => (
     <section className="panel aiPanel">
       <h3>Akıllı Tarım Asistanı</h3>
@@ -544,6 +665,7 @@ function App() {
     if (page === "farmerCards") return farmerCards();
     if (page === "calendar") return calendarPage();
     if (page === "barcode") return barcodePage();
+    if (page === "companySettings") return companySettingsPage();
     if (page === "ai") return aiPage();
     return renderTable(page);
   };
@@ -576,14 +698,14 @@ function App() {
             <h1>{currentTitle}</h1>
             <p>{currentDesc}</p>
           </div>
-          {page !== "dashboard" && page !== "ai" && (
+          {page !== "dashboard" && page !== "ai" && page !== "companySettings" && (
             <button className="primary" onClick={() => openModal("Yeni Kayıt", page)}>
               <Plus size={15} /> Yeni Ekle
             </button>
           )}
         </header>
 
-        {page !== "dashboard" && page !== "ai" && (
+        {page !== "dashboard" && page !== "ai" && page !== "companySettings" && (
           <section className="stats">
             <div className="stat"><span>Toplam Kayıt</span><b>{rows.length}</b></div>
             <div className="stat"><span>Aktif İşlem</span><b>{Math.max(1, rows.length - 1)}</b></div>
