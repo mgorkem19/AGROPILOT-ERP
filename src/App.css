@@ -852,7 +852,7 @@ option {
     transition: transform 220ms ease;
     z-index: 30;
     padding-top: 18px;
-    background: #3c434d;
+    background: #08101a;
   }
 
   aside.open {
@@ -1010,5 +1010,5 @@ option {
   }
 }
 aside{
-    background:#3c434d !important;
+    background: #08101a !important;
 }
