@@ -35,6 +35,13 @@ import {
   X,
 } from "lucide-react";
 
+const WhatsAppIcon = ({ size = 14 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.148-1.758-.867-2.03-.967-.272-.1-.47-.148-.67.15-.197.297-.767.967-.94 1.166-.173.197-.347.222-.644.074-.297-.148-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.15-.173.2-.297.3-.495.1-.197.05-.371-.025-.52-.075-.148-.67-1.612-.92-2.21-.242-.579-.487-.5-.67-.51-.173-.007-.371-.007-.568-.007-.197 0-.52.074-.79.371-.272.296-1.04 1.016-1.04 2.479 0 1.462 1.065 2.874 1.213 3.074.15.197 2.095 3.2 5.076 4.487.71.307 1.262.49 1.693.627.71.227 1.36.195 1.872.118.572-.085 1.758-.719 2.007-1.415.248-.697.248-1.29.173-1.414-.075-.123-.272-.197-.57-.345z"/>
+    <path d="M20.52 3.48C18.26 1.22 15.28 0 12.04 0 5.4 0 0 5.4 0 12.04c0 2.12.56 4.21 1.62 6.03L0 24l5.9-1.55c1.78.97 3.7 1.48 5.64 1.48h.01c6.64 0 12.04-5.4 12.04-12.04 0-3.24-1.22-6.22-3.48-8.52z"/>
+  </svg>
+);
+
 const resizeImageFile = (file, maxWidth = 220, maxHeight = 120) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -278,10 +285,30 @@ function App() {
     alert("Firma ayarları kaydedildi");
   };
 
+  const normalizeWhatsAppNumber = (phone = "") => {
+    const digits = String(phone).replace(/\D/g, "");
+    if (!digits) return "";
+    if (digits.length === 10) return `90${digits}`;
+    if (digits.length === 11 && digits.startsWith("0")) return `9${digits}`;
+    if (digits.length === 11 && digits.startsWith("9")) return digits;
+    if (digits.length === 12 && digits.startsWith("90")) return digits;
+    return digits;
+  };
+
   const sendWhatsApp = (record = {}) => {
-    const name = record.musteri || record.firma || record.ciftci || record.bayi || "müşterimiz";
-    const msg = `Merhaba ${name}, AGROPILOT ERP üzerinden işlem bilgilendirmeniz hazırlanmıştır.`;
-    window.open(`https://wa.me/905451712019?text=${encodeURIComponent(msg)}`, "_blank");
+    const phone = normalizeWhatsAppNumber(record.telefon || record.phone || "");
+    const url = phone ? `https://wa.me/${phone}` : `https://wa.me/905451712019`;
+    window.open(url, "_blank");
+  };
+
+  const deleteFarmerRecord = (record = {}) => {
+    if (!record?.id) return;
+    if (window.confirm("Bu çiftçi kaydını silmek istediğinize emin misiniz?")) {
+      setData((prev) => ({
+        ...prev,
+        farmerCards: prev.farmerCards.filter((item) => item.id !== record.id),
+      }));
+    }
   };
 
   const schemaFor = (module) => {
@@ -515,7 +542,8 @@ function App() {
             <div className="actions">
               <button onClick={() => openModal("Detay", "farmerCards", f)}><Eye size={14} /></button>
               <button onClick={() => openModal("Düzenle", "farmerCards", f)}><Pencil size={14} /></button>
-              <button onClick={() => sendWhatsApp(f)}><MessageCircle size={14} /></button>
+              <button onClick={() => deleteFarmerRecord(f)}><Trash2 size={14} /></button>
+              <button onClick={() => sendWhatsApp(f)}><WhatsAppIcon size={14} /></button>
             </div>
           </div>
         ))}
