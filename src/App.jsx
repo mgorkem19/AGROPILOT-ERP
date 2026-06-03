@@ -33,23 +33,9 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
-const WhatsAppIcon = ({ size = 18 }) => (
-  <svg
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="12" cy="12" r="11" />
-    <path d="M16.56 12a4.56 4.56 0 0 1-9.12 0M12 8v8" />
-  </svg>
-);
+const WhatsAppIcon = ({ size = 18 }) => <FaWhatsapp size={size} />;
 
 const resizeImageFile = (file, maxWidth = 220, maxHeight = 120) => {
   return new Promise((resolve, reject) => {
