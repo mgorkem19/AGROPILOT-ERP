@@ -27,7 +27,7 @@ aside {
   width: 240px;
   min-width: 240px;
   min-height: 100vh;
-  background: #4f5660;
+  background: #464d57;
   border-right: 1px solid rgba(255,255,255,0.04);
   padding: 26px 20px;
   position: sticky;
@@ -74,7 +74,7 @@ aside button {
 aside button svg { color: #ffffff; }
 
 aside button:hover {
-  background: #5b6370;
+  background: #545c67;
   color: #ffffff;
 }
 
