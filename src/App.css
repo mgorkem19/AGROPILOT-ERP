@@ -27,15 +27,16 @@ aside {
   width: 240px;
   min-width: 240px;
   min-height: 100vh;
-  background: #4b5057;
+  background: #4a4f57;
   border-right: 1px solid #e5e7eb;
   padding: 26px 20px;
   position: sticky;
   top: 0;
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.06);
 }
 
 .logo {
-  color: #ffffff;
+  color: #f5f7fa;
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -46,7 +47,7 @@ aside {
 
 .group small {
   display: block;
-  color: #d6d9dd;
+  color: #cfd4da;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -59,7 +60,7 @@ aside button {
   align-items: center;
   gap: 10px;
   background: transparent;
-  color: #ffffff;
+  color: #f5f7fa;
   border: 1px solid transparent;
   padding: 12px 14px;
   border-radius: 12px;
@@ -70,13 +71,15 @@ aside button {
   transition: all 180ms ease;
 }
 
+aside button svg { color: #e4e7eb; }
+
 aside button:hover {
-  background: #5a6068;
-  color: #ffffff;
+  background: #5a616b;
+  color: #f5f7fa;
 }
 
 aside button.active {
-  background: #eef2f7;
+  background: #ffffff;
   color: #1f2937;
 }
 
