@@ -841,7 +841,7 @@ option {
     transition: transform 220ms ease;
     z-index: 30;
     padding-top: 18px;
-    background: #060d09;
+    background: #3c434d;
   }
 
   aside.open {
@@ -997,4 +997,7 @@ option {
   .modalActions button {
     width: 100%;
   }
+}
+aside{
+    background:#3c434d !important;
 }
