@@ -420,53 +420,67 @@ function App() {
     return rows.filter((r) => Object.values(r).join(" ").toLowerCase().includes(search.toLowerCase()));
   }, [rows, search]);
 
-  const dashboard = () => (
-    <>
-      <section className="stats four">
-        <div className="stat"><span>Toplam Satış (6 ay)</span><b>{formatMoney(salesData.reduce((s, x) => s + x.value, 0))}</b></div>
-        <div className="stat"><span>En Yüksek Ay</span><b>{highestMonth()}</b></div>
-        <div className="stat"><span>Ortalama Satış</span><b>{formatMoney(Math.round(salesData.reduce((s, x) => s + x.value, 0) / salesData.length))}</b></div>
-        <div className="stat"><span>Kritik Stok</span><b>{alerts.length}</b></div>
-      </section>
+  const dashboard = () => {
+    const totalSales = salesData.reduce((sum, item) => sum + item.value, 0);
+    const donutColors = ["#16a34a", "#15803d", "#22c55e", "#4d7c0f", "#65a30d", "#4ade80"];
+    const donutGradient = salesData.reduce(
+      (acc, item, i) => {
+        const start = acc.current;
+        const percentage = (item.value / totalSales) * 100;
+        const end = start + percentage;
+        acc.segments.push(`${donutColors[i % donutColors.length]} ${start}% ${end}%`);
+        acc.current = end;
+        return acc;
+      },
+      { current: 0, segments: [] }
+    ).segments.join(", ");
 
-      <section className="dashGrid">
-        <div className="panel chartPanel">
-          <h3>Aylık Satış Grafiği</h3>
-          <div className="chartWrap">
-            <div className="bars">
-              {salesData.map((s, i) => {
-                const max = Math.max(...salesData.map((x) => x.value));
-                const h = Math.round((s.value / max) * 100);
-                return (
-                  <div key={i} className="barWrap">
-                    <div
-                      className="bar"
-                      style={{ height: `${h}%`, transitionDelay: `${i * 80}ms` }}
-                      onMouseEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, month: s.month, value: s.value })}
-                      onMouseMove={(e) => setTooltip((t) => t ? { ...t, x: e.clientX, y: e.clientY } : null)}
-                      onMouseLeave={() => setTooltip(null)}
-                    />
-                    <div className="barLabel">
-                      <span className="barAmount">{formatMoney(s.value)}</span>
-                      <span className="barMonth">{s.month}</span>
+    return (
+      <>
+        <section className="stats four">
+          <div className="stat"><span>Toplam Satış (6 ay)</span><b>{formatMoney(totalSales)}</b></div>
+          <div className="stat"><span>En Yüksek Ay</span><b>{highestMonth()}</b></div>
+          <div className="stat"><span>Ortalama Satış</span><b>{formatMoney(Math.round(totalSales / salesData.length))}</b></div>
+          <div className="stat"><span>Kritik Stok</span><b>{alerts.length}</b></div>
+        </section>
+
+        <section className="dashGrid">
+          <div className="panel chartPanel">
+            <h3>Aylık Satış Grafiği</h3>
+            <div className="donutSection">
+              <div className="donutChart" style={{ background: `conic-gradient(${donutGradient})` }}>
+                <div className="donutCenter">
+                  <strong>{formatMoney(totalSales)}</strong>
+                  <span>Toplam Satış</span>
+                </div>
+              </div>
+              <div className="donutLegend">
+                {salesData.map((s, i) => (
+                  <div key={s.month} className="legendItem">
+                    <div className="legendInfo">
+                      <span className="legendDot" style={{ background: donutColors[i % donutColors.length] }} />
+                      <span>{s.month}</span>
                     </div>
+                    <span className="legendValue">{formatMoney(s.value)}</span>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
-            {tooltip && <div className="tooltip" style={{ left: tooltip.x + 12, top: tooltip.y - 28 }}>{tooltip.month}: {formatMoney(tooltip.value)}</div>}
           </div>
-        </div>
 
-        <div className="panel">
-          <h3>Kritik Uyarılar</h3>
-          {alerts.map((a) => (
-            <div key={a.id} className="warning pulse" onClick={() => openModal("Uyarı Detayı", "alerts", a)}>
-              <AlertTriangle size={16} /> <b>{a.type}:</b> {a.text}
-            </div>
-          ))}
-        </div>
-      </section>
+          <div className="panel warningsPanel">
+            <h3>Kritik Uyarılar</h3>
+            {alerts.map((a) => (
+              <div key={a.id} className="warning" onClick={() => openModal("Uyarı Detayı", "alerts", a)}>
+                <AlertTriangle size={16} />
+                <div className="warningBody">
+                  <b>{a.type}</b>
+                  <span>{a.text}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
       <section className="panel">
         <div className="panelHead"><h3>Son Siparişler</h3></div>
@@ -474,6 +488,7 @@ function App() {
       </section>
     </>
   );
+  };
 
   function formatMoney(v) { return `₺${v.toLocaleString('tr-TR')}`; }
   function highestMonth() { const max = Math.max(...salesData.map((x) => x.value)); const item = salesData.find((x) => x.value === max); return `${item.month} (${formatMoney(item.value)})`; }
