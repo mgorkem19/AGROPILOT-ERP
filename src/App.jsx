@@ -35,6 +35,32 @@ import {
   X,
 } from "lucide-react";
 
+const resizeImageFile = (file, maxWidth = 220, maxHeight = 120) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height, 1);
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * ratio);
+        canvas.height = Math.round(img.height * ratio);
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/png"));
+        } else {
+          reject(new Error("Canvas not supported"));
+        }
+      };
+      img.onerror = () => reject(new Error("Image load failed"));
+      img.src = reader.result;
+    };
+    reader.onerror = () => reject(new Error("File read failed"));
+    reader.readAsDataURL(file);
+  });
+};
+
 const menuGroups = [
   {
     title: "GENEL",
@@ -213,7 +239,7 @@ function App() {
       taxNumber: "",
     };
     try {
-      const stored = window.localStorage.getItem("agropilot_company");
+      const stored = window.localStorage.getItem("agropilot_company_settings");
       if (!stored) return {
         name: "AGROPILOT ERP",
         logo: "",
@@ -246,10 +272,10 @@ function App() {
     }
   });
 
-  useEffect(() => {
+  const saveCompanySettings = () => {
     if (typeof window === "undefined") return;
-    window.localStorage.setItem("agropilot_company", JSON.stringify(company));
-  }, [company]);
+    window.localStorage.setItem("agropilot_company_settings", JSON.stringify(company));
+  };
 
   const sendWhatsApp = (record = {}) => {
     const name = record.musteri || record.firma || record.ciftci || record.bayi || "müşterimiz";
@@ -304,7 +330,7 @@ function App() {
           .card { background: #0b1710; border: 1px solid #17361f; border-radius: 18px; padding: 24px; }
           .headerTop { display:flex; justify-content:space-between; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:24px; }
           .brandInfo { display:flex; align-items:center; gap:14px; }
-          .companyLogo { width: 120px; max-height: 80px; object-fit: contain; border-radius: 12px; background: #07130f; }
+          .companyLogo { width: 140px; max-height: 100px; object-fit: contain; border-radius: 12px; background: #07130f; }
           .companyName { font-size: 22px; font-weight: 800; color: #7ee787; }
           .companyContact { text-align:right; min-width: 220px; }
           .companyContact div { color: #9ca98f; font-size: 13px; line-height:1.6; }
@@ -549,11 +575,18 @@ function App() {
           <input type="file" accept="image/*" onChange={(e) => {
             const file = e.target.files?.[0];
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = () => setCompany((prev) => ({ ...prev, logo: reader.result || prev.logo }));
-            reader.readAsDataURL(file);
+            resizeImageFile(file, 220, 120)
+              .then((resized) => setCompany((prev) => ({ ...prev, logo: resized })))
+              .catch(() => {
+                const reader = new FileReader();
+                reader.onload = () => setCompany((prev) => ({ ...prev, logo: reader.result || prev.logo }));
+                reader.readAsDataURL(file);
+              });
           }} />
         </label>
+        <button type="button" className="primary" onClick={saveCompanySettings} style={{ gridColumn: "1 / -1", justifySelf: "start" }}>
+          Kaydet
+        </button>
         <label>
           Telefon
           <input value={company.phone} onChange={(e) => setCompany((prev) => ({ ...prev, phone: e.target.value }))} placeholder="Telefon" />
@@ -576,7 +609,7 @@ function App() {
         </label>
       </div>
       {company.logo && (
-        <div className="companyLogoPreview">
+        <div className="companySettingsPreview">
           <h4>Logo Önizleme</h4>
           <img src={company.logo} alt="Logo Önizleme" />
         </div>

@@ -481,7 +481,11 @@ select,
 }
 
 .companySettingsPreview img {
-  max-width: 100%;
+  max-width: 220px;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border-radius: 12px;
   border: 1px solid #17361f;
 }
