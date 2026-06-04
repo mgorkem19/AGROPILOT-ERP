@@ -82,6 +82,9 @@ const menuGroups = [
       ["collections", "Tahsilatlar", ReceiptText],
       ["cashbank", "Kasa & Banka", Banknote],
       ["offers", "Teklifler", FileText],
+      ["deliveries", "Teslimatlar", Package],
+      ["cekTakibi", "Çek Takibi", Banknote],
+      ["senetTakibi", "Senet Takibi", ReceiptText],
       ["companySettings", "Firma Ayarları", Settings],
     ],
   },
@@ -122,9 +125,10 @@ const initialData = {
     { id: 3, depo: "Mersin Depo", urun: "Potasyum Nitrat", giris: "250", cikis: "138", kalan: "112", durum: "Normal" },
   ],
   orders: [
-    { id: 1, no: "SIP-0007", musteri: "Ege Tarım A.Ş.", tutar: "₺91.000", tarih: "02.06.2026", durum: "Onaylandı" },
+    { id: 1, no: "SIP-0007", musteri: "Ege Tarım A.Ş.", tutar: "₺91.000", tarih: "02.06.2026", durum: "Hazırlanıyor" },
     { id: 2, no: "SIP-0012", musteri: "Ahmet Yılmaz Tarım", tutar: "₺48.500", tarih: "04.06.2026", durum: "Hazırlanıyor" },
     { id: 3, no: "SIP-0018", musteri: "Marmara Seracılık", tutar: "₺22.300", tarih: "05.06.2026", durum: "Bekliyor" },
+    { id: 4, no: "SIP-0021", musteri: "Karadeniz Tarım Kooperatifi", tutar: "₺67.200", tarih: "01.06.2026", durum: "Gecikti" },
   ],
   accounts: [
     { id: 1, musteri: "Ahmet Yılmaz Tarım", borc: "₺24.500", alacak: "₺0", bakiye: "₺24.500", durum: "Borçlu" },
@@ -141,10 +145,19 @@ const initialData = {
     { id: 3, hesap: "Giderler", tip: "Gider", bakiye: "₺31.000", hareket: "Aylık", durum: "Kontrol" },
   ],
   offers: [
-    { id: 1, teklifNo: "TEK-2026-001", musteri: "Ege Tarım A.Ş.", sehir: "İzmir", tarih: "28.05.2026", gecerlilik: "28.06.2026", tutar: "₺145.000", durum: "Gönderildi" },
-    { id: 2, teklifNo: "TEK-2026-002", musteri: "Karadeniz Tarım Kooperatifi", sehir: "Trabzon", tarih: "01.06.2026", gecerlilik: "01.07.2026", tutar: "₺88.500", durum: "Kabul Edildi" },
-    { id: 3, teklifNo: "TEK-2026-003", musteri: "Güneydoğu Tarım Grubu", sehir: "Şanlıurfa", tarih: "20.05.2026", gecerlilik: "20.06.2026", tutar: "₺210.000", durum: "Siparişe Dönüştü" },
-    { id: 4, teklifNo: "TEK-2026-004", musteri: "Trakya Buğday Üreticileri Bir.", sehir: "Edirne", tarih: "02.06.2026", gecerlilik: "02.07.2026", tutar: "₺67.000", durum: "Taslak" },
+    { id: 1, teklifNo: "TEK-2026-001", musteri: "Ege Tarım A.Ş.", sehir: "İzmir", tarih: "28.05.2026", gecerlilik: "28.06.2026", tutar: "₺145.000", durum: "Hazırlanıyor" },
+    { id: 2, teklifNo: "TEK-2026-002", musteri: "Karadeniz Tarım Kooperatifi", sehir: "Trabzon", tarih: "01.06.2026", gecerlilik: "01.07.2026", tutar: "₺88.500", durum: "Bekliyor" },
+    { id: 3, teklifNo: "TEK-2026-003", musteri: "Güneydoğu Tarım Grubu", sehir: "Şanlıurfa", tarih: "20.05.2026", gecerlilik: "20.06.2026", tutar: "₺210.000", durum: "Gecikti" },
+    { id: 4, teklifNo: "TEK-2026-004", musteri: "Trakya Buğday Üreticileri Bir.", sehir: "Edirne", tarih: "02.06.2026", gecerlilik: "02.07.2026", tutar: "₺67.000", durum: "İptal" },
+  ],
+  deliveries: [
+    { id: 1, teslimNo: "TES-0001", musteri: "Ege Tarım A.Ş.", telefon: "0232 445 6789", teslimTarihi: "05.06.2026", teslimEden: "Ali Yılmaz", teslimAlan: "Mehmet Aydın", urun: "DAP Gübre", urunTipi: "Gübre", miktar: "25", birim: "Çuval", lot: "LOT-245", parti: "PRT-12", skt: "2027", tarla: "Biber Tarlası", dekar: "120", kullanimAmaci: "Gübreleme", aciklama: "Acil teslimat", teslimDurumu: "Teslim Edildi" },
+  ],
+  cekTakibi: [
+    { id: 1, cekNo: "CHK-001", musteri: "Marmara Seracılık", banka: "Ziraat Bankası", sube: "Merkez", vadeTarihi: "15.06.2026", tutar: "₺45.000", durum: "Bekliyor", aciklama: "Firma çek" },
+  ],
+  senetTakibi: [
+    { id: 1, senetNo: "SNT-001", borclu: "Ahmet Yılmaz", alacakli: "Ege Tarım A.Ş.", vadeTarihi: "20.06.2026", tutar: "₺28.000", durum: "Gecikti", aciklama: "Borcun takibi" },
   ],
   farmerCards: [
     { id: 1, ciftci: "Ahmet Yılmaz", telefon: "0532 451 2234", tarla: "Biber Tarlası", toplamTarla: "3", dekar: "120", bakiye: "₺24.500 Borç", sonUrun: "DAP Gübre", sonraki: "15 gün sonra kontrol" },
@@ -178,6 +191,9 @@ const pageInfo = {
   collections: ["Tahsilatlar", "Ödeme ve tahsilat hareketlerini takip edin."],
   cashbank: ["Kasa & Banka", "Kasa, banka, gelir ve gider özetleri."],
   offers: ["Teklifler", "Müşteri tekliflerini oluşturun ve takip edin."],
+  deliveries: ["Teslimatlar", "Sipariş teslimatlarını ve tutanakları yönetin."],
+  cekTakibi: ["Çek Takibi", "Çeklerin vade, durum ve cari ilişkisinin takibini yapın."],
+  senetTakibi: ["Senet Takibi", "Senetlerin vadesini ve tahsil durumunu izleyin."],
   companySettings: ["Firma Ayarları", "Teklif PDF'leri için şirket bilgilerini güncelleyin."],
   farmerCards: ["Çiftçi Kartı", "Çiftçinin tüm geçmişini tek ekranda görüntüleyin."],
   fieldTracking: ["Tarla Takibi", "Hangi tarlaya hangi ürün verildiğini takip edin."],
@@ -193,7 +209,8 @@ function App() {
       const stored = window.localStorage.getItem("agropilot_data");
       if (!stored) return initialData;
       const parsed = JSON.parse(stored);
-      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : initialData;
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return initialData;
+      return { ...initialData, ...parsed };
     } catch {
       return initialData;
     }
@@ -314,18 +331,19 @@ function App() {
       accounts: ["musteri", "borc", "alacak", "bakiye", "durum"],
       fieldTracking: ["ciftci", "tarla", "urun", "doz", "uygulama", "sonraki", "durum"],
       calendar: ["zaman", "ciftci", "islem", "tarla", "durum"],
+      deliveries: ["teslimNo", "musteri", "telefon", "teslimTarihi", "teslimEden", "teslimAlan", "urun", "urunTipi", "miktar", "birim", "lot", "parti", "skt", "tarla", "dekar", "kullanimAmaci", "aciklama", "teslimDurumu"],
+      cekTakibi: ["cekNo", "musteri", "banka", "sube", "vadeTarihi", "tutar", "durum", "aciklama"],
+      senetTakibi: ["senetNo", "borclu", "alacakli", "vadeTarihi", "tutar", "durum", "aciklama"],
     };
     if (custom[module]) return custom[module];
     const sample = data[module]?.[0] || {};
     return Object.keys(sample).filter((k) => k !== "id");
   };
 
-  const openModal = (type, module, record = null) => {
+  const openModal = (type, module, record = null, initialValues = null, meta = null) => {
     const fields = schemaFor(module);
-    const values = record
-      ? { ...record }
-      : Object.fromEntries(fields.map((f) => [f, ""]));
-    setModal({ type, module, record, values });
+    const values = initialValues || (record ? { ...record } : Object.fromEntries(fields.map((f) => [f, ""])));
+    setModal({ type, module, record, values, meta });
   };
 
   const openOfferPdf = (offer) => {
@@ -396,6 +414,90 @@ function App() {
     printWindow.focus();
   };
 
+  const openDeliveryPdf = (delivery) => {
+    const printWindow = window.open("", "_blank", "width=860,height=760");
+    if (!printWindow) return;
+
+    const escapeHtml = (value) => String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
+    const logoHtml = company.logo ? `<img class="companyLogo" src="${escapeHtml(company.logo)}" alt="Logo" />` : "";
+    const companyName = escapeHtml(company.name || "AGROPILOT ERP");
+
+    const html = `<!DOCTYPE html>
+      <html lang="tr">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Teslim Tutanağı - ${escapeHtml(delivery.teslimNo)}</title>
+        <style>
+          body { margin:0; font-family: Arial, sans-serif; background: #07130f; color: #e5e7eb; }
+          .page { max-width: 820px; margin: 0 auto; padding: 36px; }
+          .card { background: #0b1710; border: 1px solid #17361f; border-radius: 18px; padding: 24px; }
+          .headerTop { display:flex; justify-content:space-between; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:24px; }
+          .brandInfo { display:flex; align-items:center; gap:14px; }
+          .companyLogo { width: 140px; max-height: 100px; object-fit: contain; border-radius: 12px; background: #07130f; }
+          .companyName { font-size: 22px; font-weight: 800; color: #7ee787; }
+          .companyContact { text-align:right; min-width: 220px; }
+          .companyContact div { color: #9ca98f; font-size: 13px; line-height:1.6; }
+          .title { font-size: 30px; margin: 20px 0; letter-spacing: 1px; }
+          .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+          .row label { color: #8fa791; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; display: block; margin-bottom: 6px; }
+          .row span { color: #f8fff3; font-size: 16px; font-weight: 700; }
+          .section { margin-bottom: 18px; }
+          .section h3 { color: #a7f3d0; margin-bottom: 10px; }
+          .signatures { display:flex; gap:24px; flex-wrap:wrap; margin-top:28px; }
+          .signBox { flex:1; min-width:220px; border-top:1px solid #315235; padding-top:18px; color:#9ca98f; }
+          .printBar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+          .printBtn { background: #22c55e; color: #04120a; border: none; border-radius: 12px; padding: 12px 18px; font-size: 14px; cursor: pointer; }
+          @media print { .printBar { display: none; } body { background: #fff; color: #000; } .card { border-color: #d1d5db; background: #fff; } .companyName { color: #000; } }
+        </style>
+      </head>
+      <body>
+        <div class="page">
+          <div class="printBar">
+            <button class="printBtn" onclick="window.print();">Yazdır / PDF İndir</button>
+          </div>
+          <div class="card">
+            <div class="headerTop">
+              <div class="brandInfo">${logoHtml}<div class="companyName">${companyName}</div></div>
+              <div class="companyContact">
+                ${company.address ? `<div>${escapeHtml(company.address)}</div>` : ""}
+                ${company.phone ? `<div>Tel: ${escapeHtml(company.phone)}</div>` : ""}
+                ${company.email ? `<div>${escapeHtml(company.email)}</div>` : ""}
+                ${company.taxOffice || company.taxNumber ? `<div>${escapeHtml(company.taxOffice)} ${escapeHtml(company.taxNumber)}</div>` : ""}
+              </div>
+            </div>
+            <div class="title">TESLİM TUTANAĞI</div>
+            <div class="section">
+              <div class="row"><div><label>Teslim No</label><span>${escapeHtml(delivery.teslimNo)}</span></div><div><label>Teslim Tarihi</label><span>${escapeHtml(delivery.teslimTarihi)}</span></div></div>
+              <div class="row"><div><label>Müşteri / Çiftçi</label><span>${escapeHtml(delivery.musteri)}</span></div><div><label>Telefon</label><span>${escapeHtml(delivery.telefon)}</span></div></div>
+            </div>
+            <div class="section">
+              <h3>Ürün Bilgileri</h3>
+              <div class="row"><div><label>Ürün</label><span>${escapeHtml(delivery.urun)}</span></div><div><label>Tip</label><span>${escapeHtml(delivery.urunTipi)}</span></div></div>
+              <div class="row"><div><label>Miktar</label><span>${escapeHtml(delivery.miktar)} ${escapeHtml(delivery.birim)}</span></div><div><label>Lot / Parti</label><span>${escapeHtml(delivery.lot)} / ${escapeHtml(delivery.parti)}</span></div></div>
+              <div class="row"><div><label>SKT</label><span>${escapeHtml(delivery.skt)}</span></div><div><label>Tarla</label><span>${escapeHtml(delivery.tarla)}</span></div></div>
+              <div class="row"><div style="flex:1"><label>Kullanım Amacı</label><span>${escapeHtml(delivery.kullanimAmaci)}</span></div></div>
+            </div>
+            <div class="section"><div class="row"><div style="flex:1"><label>Notlar</label><span>${escapeHtml(delivery.aciklama)}</span></div></div></div>
+            <div class="signatures">
+              <div class="signBox"><strong>Teslim Eden</strong><div>${escapeHtml(delivery.teslimEden)}</div><div>Ad Soyad / İmza</div></div>
+              <div class="signBox"><strong>Teslim Alan</strong><div>${escapeHtml(delivery.teslimAlan)}</div><div>Ad Soyad / İmza</div></div>
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>`;
+
+    printWindow.document.write(html);
+    printWindow.document.close();
+    printWindow.focus();
+  };
+
   const saveModal = () => {
     if (!modal || modal.type === "Detay") return setModal(null);
     if (modal.type === "Sil") {
@@ -408,6 +510,17 @@ function App() {
     }
 
     setData((prev) => {
+      if (modal.type === "Teslim Et") {
+        const delivery = { ...modal.values, id: Date.now() };
+        const updated = { ...prev, deliveries: [delivery, ...(prev.deliveries || [])] };
+        if (modal.meta?.sourceModule && modal.meta?.sourceId) {
+          updated[modal.meta.sourceModule] = (prev[modal.meta.sourceModule] || []).map((x) =>
+            x.id === modal.meta.sourceId ? { ...x, durum: "Teslim Edildi" } : x
+          );
+        }
+        return updated;
+      }
+
       const list = prev[modal.module] || [];
       if (modal.type === "Yeni Kayıt") {
         return { ...prev, [modal.module]: [{ ...modal.values, id: Date.now() }, ...list] };
@@ -706,8 +819,32 @@ function App() {
                 <button onClick={() => openModal("Detay", module, row)}><Eye size={14} /></button>
                 <button onClick={() => openModal("Düzenle", module, row)}><Pencil size={14} /></button>
                 <button className="whatsappBtn" onClick={() => sendWhatsApp(row)}><WhatsAppIcon size={18} /></button>
-              {module === "offers" && (
-                <button className="pdfButton" onClick={() => openOfferPdf(row)}><Printer size={14} /> PDF</button>
+              {(module === "offers" || module === "deliveries") && (
+                <button className="pdfButton" onClick={() => (module === "offers" ? openOfferPdf(row) : openDeliveryPdf(row))}><Printer size={14} /> PDF</button>
+              )}
+              {(module === "orders" || module === "offers") && row.durum !== "Teslim Edildi" && (
+                <button className="primary" onClick={() => openModal("Teslim Et", "deliveries", null, {
+                  teslimNo: `TES-${Date.now()}`,
+                  musteri: row.musteri || row.ciftci || "",
+                  telefon: row.telefon || "",
+                  teslimTarihi: new Date().toLocaleDateString('tr-TR'),
+                  teslimEden: "",
+                  teslimAlan: "",
+                  urun: row.urun || "",
+                  urunTipi: row.kategori || "",
+                  miktar: row.miktar || "",
+                  birim: row.birim || "",
+                  lot: row.lot || "",
+                  parti: row.parti || "",
+                  skt: row.skt || "",
+                  tarla: row.tarla || "",
+                  dekar: row.dekar || "",
+                  kullanimAmaci: "",
+                  aciklama: "",
+                  teslimDurumu: "Teslim Edildi",
+                }, { sourceModule: module, sourceId: row.id })}>
+                  Teslim Et
+                </button>
               )}
                 <button onClick={() => openModal("Sil", module, row)}><Trash2 size={14} /></button>
               </td>
@@ -819,27 +956,29 @@ function App() {
               schemaFor(modal.module).map((field) => (
                 <label key={field}>
                   {label(field)}
-                  {field === "durum" ? (
-                    <select
-                      disabled={modal.type === "Detay"}
-                      value={modal.values[field] || ""}
-                      onChange={(e) => setModal({ ...modal, values: { ...modal.values, [field]: e.target.value } })}
-                    >
-                      <option>Aktif</option>
-                      <option>Bekliyor</option>
-                      <option>Planlandı</option>
-                      <option>Uygulandı</option>
-                      <option>Kritik</option>
-                      <option>Takipte</option>
-                      <option>Tamamlandı</option>
-                    </select>
-                  ) : (
-                    <input
-                      disabled={modal.type === "Detay"}
-                      value={modal.values[field] || ""}
-                      onChange={(e) => setModal({ ...modal, values: { ...modal.values, [field]: e.target.value } })}
-                    />
-                  )}
+                  {(() => {
+                    const options = selectOptions(field, modal.module);
+                    if (options) {
+                      return (
+                        <select
+                          disabled={modal.type === "Detay"}
+                          value={modal.values[field] || ""}
+                          onChange={(e) => setModal({ ...modal, values: { ...modal.values, [field]: e.target.value } })}
+                        >
+                          {options.map((option) => (
+                            <option key={option}>{option}</option>
+                          ))}
+                        </select>
+                      );
+                    }
+                    return (
+                      <input
+                        disabled={modal.type === "Detay"}
+                        value={modal.values[field] || ""}
+                        onChange={(e) => setModal({ ...modal, values: { ...modal.values, [field]: e.target.value } })}
+                      />
+                    );
+                  })()}
                 </label>
               ))
             )}
@@ -870,6 +1009,8 @@ function label(key) {
     teklifNo: "Teklif No", gecerlilik: "Geçerlilik",
     ciftci: "Çiftçi", tarla: "Tarla", toplamTarla: "Tarla Sayısı", dekar: "Dekar", sonUrun: "Son Ürün", sonraki: "Sonraki İşlem",
     doz: "Doz", uygulama: "Uygulama", zaman: "Zaman", islem: "İşlem", barkod: "Barkod No",
+    teslimNo: "Teslim No", telefon: "Telefon", teslimTarihi: "Teslim Tarihi", teslimEden: "Teslim Eden Personel", teslimAlan: "Teslim Alan Kişi", urunTipi: "Ürün Tipi", miktar: "Miktar", birim: "Birim", parti: "Parti No", kullanimAmaci: "Kullanım Amacı", aciklama: "Açıklama / Not", teslimDurumu: "Teslim Durumu",
+    cekNo: "Çek No", banka: "Banka", sube: "Şube", vadeTarihi: "Vade Tarihi", borclu: "Borçlu", alacakli: "Alacaklı",
   };
   return map[key] || key;
 }
@@ -879,7 +1020,20 @@ function moneyCell(key) {
 }
 
 function statusCell(key) {
-  return ["durum"].includes(key);
+  return ["durum", "teslimDurumu"].includes(key);
+}
+
+function selectOptions(field, module) {
+  if (field === "durum" && (module === "orders" || module === "offers")) {
+    return ["Hazırlanıyor", "Teslim Edildi", "Bekliyor", "Gecikti", "İptal"];
+  }
+  if (field === "durum") {
+    return ["Aktif", "Bekliyor", "Planlandı", "Uygulandı", "Kritik", "Takipte", "Tamamlandı"];
+  }
+  if (field === "teslimDurumu") {
+    return ["Teslim Edildi", "Bekliyor", "Gecikti", "İade"];
+  }
+  return null;
 }
 
 export default App;
