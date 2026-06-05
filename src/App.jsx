@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import {
@@ -67,138 +67,138 @@ const menuGroups = [
   {
     title: "GENEL",
     items: [
-      ["dashboard", "Gösterge Paneli", LayoutDashboard],
-      ["customers", "Müşteriler", Users],
+      ["dashboard", "GÃ¶sterge Paneli", LayoutDashboard],
+      ["customers", "MÃ¼ÅŸteriler", Users],
       ["dealers", "Bayiler", Store],
-      ["products", "Ürünler", Package],
+      ["products", "ÃœrÃ¼nler", Package],
       ["inventory", "Envanter", Boxes],
-      ["orders", "Siparişler", ShoppingCart],
+      ["orders", "SipariÅŸler", ShoppingCart],
     ],
   },
   {
-    title: "FİNANS",
+    title: "FÄ°NANS",
     items: [
       ["accounts", "Cari Hesap", Wallet],
       ["collections", "Tahsilatlar", ReceiptText],
       ["cashbank", "Kasa & Banka", Banknote],
       ["offers", "Teklifler", FileText],
       ["deliveries", "Teslimatlar", Package],
-      ["cekTakibi", "Çek Takibi", Banknote],
+      ["cekTakibi", "Ã‡ek Takibi", Banknote],
       ["senetTakibi", "Senet Takibi", ReceiptText],
-      ["companySettings", "Firma Ayarları", Settings],
+      ["companySettings", "Firma AyarlarÄ±", Settings],
     ],
   },
   {
     title: "TARIMSAL",
     items: [
-      ["farmerCards", "Çiftçi Kartı", Users],
+      ["farmerCards", "Ã‡iftÃ§i KartÄ±", Users],
       ["fieldTracking", "Tarla Takibi", MapPinned],
       ["calendar", "Periyodik Takvim", CalendarDays],
-      ["barcode", "Barkod Yönetimi", Barcode],
+      ["barcode", "Barkod YÃ¶netimi", Barcode],
     ],
   },
   {
     title: "ZEKA",
-    items: [["ai", "Yapay Zeka Asistanı", Bot]],
+    items: [["ai", "Yapay Zeka AsistanÄ±", Bot]],
   },
 ];
 
 const initialData = {
   customers: [
-    { id: 1, firma: "Ahmet Yılmaz Tarım", sehir: "Adana", telefon: "0532 451 2234", ciro: "₺124.500", durum: "Aktif" },
-    { id: 2, firma: "Ege Tarım A.Ş.", sehir: "İzmir", telefon: "0232 445 6789", ciro: "₺512.000", durum: "Aktif" },
-    { id: 3, firma: "Marmara Seracılık Ltd.", sehir: "Bursa", telefon: "0226 445 7788", ciro: "₺67.800", durum: "Takipte" },
+    { id: 1, firma: "Ahmet YÄ±lmaz TarÄ±m", sehir: "Adana", telefon: "0532 451 2234", ciro: "â‚º124.500", durum: "Aktif" },
+    { id: 2, firma: "Ege TarÄ±m A.Å.", sehir: "Ä°zmir", telefon: "0232 445 6789", ciro: "â‚º512.000", durum: "Aktif" },
+    { id: 3, firma: "Marmara SeracÄ±lÄ±k Ltd.", sehir: "Bursa", telefon: "0226 445 7788", ciro: "â‚º67.800", durum: "Takipte" },
   ],
   dealers: [
-    { id: 1, bayi: "Çukurova Zirai Bayi", bolge: "Akdeniz", yetkili: "Serkan Usta", satis: "₺210.000", durum: "Aktif" },
-    { id: 2, bayi: "Ege Zirai Tedarik", bolge: "Ege", yetkili: "Canan Aksoy", satis: "₺145.000", durum: "Aktif" },
-    { id: 3, bayi: "Trakya Tarım Noktası", bolge: "Marmara", yetkili: "Hakan Yıldız", satis: "₺92.000", durum: "Pasif" },
+    { id: 1, bayi: "Ã‡ukurova Zirai Bayi", bolge: "Akdeniz", yetkili: "Serkan Usta", satis: "â‚º210.000", durum: "Aktif" },
+    { id: 2, bayi: "Ege Zirai Tedarik", bolge: "Ege", yetkili: "Canan Aksoy", satis: "â‚º145.000", durum: "Aktif" },
+    { id: 3, bayi: "Trakya TarÄ±m NoktasÄ±", bolge: "Marmara", yetkili: "Hakan YÄ±ldÄ±z", satis: "â‚º92.000", durum: "Pasif" },
   ],
   products: [
-    { id: 1, urun: "DAP Gübre", kategori: "Gübre", lot: "LOT-245", parti: "PRT-12", skt: "2027", stok: "520 Adet", durum: "Aktif" },
-    { id: 2, urun: "Fungisit X200", kategori: "İlaç", lot: "LOT-881", parti: "PRT-44", skt: "2026", stok: "74 Adet", durum: "Kritik" },
+    { id: 1, urun: "DAP GÃ¼bre", kategori: "GÃ¼bre", lot: "LOT-245", parti: "PRT-12", skt: "2027", stok: "520 Adet", durum: "Aktif" },
+    { id: 2, urun: "Fungisit X200", kategori: "Ä°laÃ§", lot: "LOT-881", parti: "PRT-44", skt: "2026", stok: "74 Adet", durum: "Kritik" },
     { id: 3, urun: "Potasyum Nitrat", kategori: "Besin", lot: "LOT-109", parti: "PRT-09", skt: "2028", stok: "112 Adet", durum: "Aktif" },
   ],
   inventory: [
-    { id: 1, depo: "Merkez Depo", urun: "DAP Gübre", giris: "800", cikis: "280", kalan: "520", durum: "Normal" },
+    { id: 1, depo: "Merkez Depo", urun: "DAP GÃ¼bre", giris: "800", cikis: "280", kalan: "520", durum: "Normal" },
     { id: 2, depo: "Adana Depo", urun: "Fungisit X200", giris: "120", cikis: "46", kalan: "74", durum: "Kritik" },
     { id: 3, depo: "Mersin Depo", urun: "Potasyum Nitrat", giris: "250", cikis: "138", kalan: "112", durum: "Normal" },
   ],
   orders: [
-    { id: 1, no: "SIP-0007", musteri: "Ege Tarım A.Ş.", tutar: "₺91.000", tarih: "02.06.2026", durum: "Hazırlanıyor" },
-    { id: 2, no: "SIP-0012", musteri: "Ahmet Yılmaz Tarım", tutar: "₺48.500", tarih: "04.06.2026", durum: "Hazırlanıyor" },
-    { id: 3, no: "SIP-0018", musteri: "Marmara Seracılık", tutar: "₺22.300", tarih: "05.06.2026", durum: "Bekliyor" },
-    { id: 4, no: "SIP-0021", musteri: "Karadeniz Tarım Kooperatifi", tutar: "₺67.200", tarih: "01.06.2026", durum: "Gecikti" },
+    { id: 1, no: "SIP-0007", musteri: "Ege TarÄ±m A.Å.", tutar: "â‚º91.000", tarih: "02.06.2026", durum: "HazÄ±rlanÄ±yor" },
+    { id: 2, no: "SIP-0012", musteri: "Ahmet YÄ±lmaz TarÄ±m", tutar: "â‚º48.500", tarih: "04.06.2026", durum: "HazÄ±rlanÄ±yor" },
+    { id: 3, no: "SIP-0018", musteri: "Marmara SeracÄ±lÄ±k", tutar: "â‚º22.300", tarih: "05.06.2026", durum: "Bekliyor" },
+    { id: 4, no: "SIP-0021", musteri: "Karadeniz TarÄ±m Kooperatifi", tutar: "â‚º67.200", tarih: "01.06.2026", durum: "Gecikti" },
   ],
   accounts: [
-    { id: 1, musteri: "Ahmet Yılmaz Tarım", borc: "₺24.500", alacak: "₺0", bakiye: "₺24.500", durum: "Borçlu" },
-    { id: 2, musteri: "Ege Tarım A.Ş.", borc: "₺0", alacak: "₺18.000", bakiye: "₺18.000", durum: "Alacaklı" },
-    { id: 3, musteri: "Marmara Seracılık", borc: "₺11.200", alacak: "₺0", bakiye: "₺11.200", durum: "Takipte" },
+    { id: 1, musteri: "Ahmet YÄ±lmaz TarÄ±m", borc: "â‚º24.500", alacak: "â‚º0", bakiye: "â‚º24.500", durum: "BorÃ§lu" },
+    { id: 2, musteri: "Ege TarÄ±m A.Å.", borc: "â‚º0", alacak: "â‚º18.000", bakiye: "â‚º18.000", durum: "AlacaklÄ±" },
+    { id: 3, musteri: "Marmara SeracÄ±lÄ±k", borc: "â‚º11.200", alacak: "â‚º0", bakiye: "â‚º11.200", durum: "Takipte" },
   ],
   collections: [
-    { id: 1, tahsilatNo: "TAH-0012", musteri: "Marmara Seracılık", tutar: "₺22.300", yontem: "Havale", tarih: "05.06.2026", durum: "Alındı" },
-    { id: 2, tahsilatNo: "TAH-0013", musteri: "Ahmet Yılmaz Tarım", tutar: "₺15.000", yontem: "Nakit", tarih: "06.06.2026", durum: "Bekliyor" },
+    { id: 1, tahsilatNo: "TAH-0012", musteri: "Marmara SeracÄ±lÄ±k", tutar: "â‚º22.300", yontem: "Havale", tarih: "05.06.2026", durum: "AlÄ±ndÄ±" },
+    { id: 2, tahsilatNo: "TAH-0013", musteri: "Ahmet YÄ±lmaz TarÄ±m", tutar: "â‚º15.000", yontem: "Nakit", tarih: "06.06.2026", durum: "Bekliyor" },
   ],
   cashbank: [
-    { id: 1, hesap: "Nakit Kasa", tip: "Kasa", bakiye: "₺84.500", hareket: "Günlük", durum: "Aktif" },
-    { id: 2, hesap: "Ziraat Bankası", tip: "Banka", bakiye: "₺412.000", hareket: "Aylık", durum: "Aktif" },
-    { id: 3, hesap: "Giderler", tip: "Gider", bakiye: "₺31.000", hareket: "Aylık", durum: "Kontrol" },
+    { id: 1, hesap: "Nakit Kasa", tip: "Kasa", bakiye: "â‚º84.500", hareket: "GÃ¼nlÃ¼k", durum: "Aktif" },
+    { id: 2, hesap: "Ziraat BankasÄ±", tip: "Banka", bakiye: "â‚º412.000", hareket: "AylÄ±k", durum: "Aktif" },
+    { id: 3, hesap: "Giderler", tip: "Gider", bakiye: "â‚º31.000", hareket: "AylÄ±k", durum: "Kontrol" },
   ],
   offers: [
-    { id: 1, teklifNo: "TEK-2026-001", musteri: "Ege Tarım A.Ş.", sehir: "İzmir", tarih: "28.05.2026", gecerlilik: "28.06.2026", tutar: "₺145.000", durum: "Hazırlanıyor" },
-    { id: 2, teklifNo: "TEK-2026-002", musteri: "Karadeniz Tarım Kooperatifi", sehir: "Trabzon", tarih: "01.06.2026", gecerlilik: "01.07.2026", tutar: "₺88.500", durum: "Bekliyor" },
-    { id: 3, teklifNo: "TEK-2026-003", musteri: "Güneydoğu Tarım Grubu", sehir: "Şanlıurfa", tarih: "20.05.2026", gecerlilik: "20.06.2026", tutar: "₺210.000", durum: "Gecikti" },
-    { id: 4, teklifNo: "TEK-2026-004", musteri: "Trakya Buğday Üreticileri Bir.", sehir: "Edirne", tarih: "02.06.2026", gecerlilik: "02.07.2026", tutar: "₺67.000", durum: "İptal" },
+    { id: 1, teklifNo: "TEK-2026-001", musteri: "Ege TarÄ±m A.Å.", sehir: "Ä°zmir", tarih: "28.05.2026", gecerlilik: "28.06.2026", tutar: "â‚º145.000", durum: "HazÄ±rlanÄ±yor" },
+    { id: 2, teklifNo: "TEK-2026-002", musteri: "Karadeniz TarÄ±m Kooperatifi", sehir: "Trabzon", tarih: "01.06.2026", gecerlilik: "01.07.2026", tutar: "â‚º88.500", durum: "Bekliyor" },
+    { id: 3, teklifNo: "TEK-2026-003", musteri: "GÃ¼neydoÄŸu TarÄ±m Grubu", sehir: "ÅanlÄ±urfa", tarih: "20.05.2026", gecerlilik: "20.06.2026", tutar: "â‚º210.000", durum: "Gecikti" },
+    { id: 4, teklifNo: "TEK-2026-004", musteri: "Trakya BuÄŸday Ãœreticileri Bir.", sehir: "Edirne", tarih: "02.06.2026", gecerlilik: "02.07.2026", tutar: "â‚º67.000", durum: "Ä°ptal" },
   ],
   deliveries: [
-    { id: 1, teslimNo: "TES-0001", musteri: "Ege Tarım A.Ş.", telefon: "0232 445 6789", teslimTarihi: "05.06.2026", teslimEden: "Ali Yılmaz", teslimAlan: "Mehmet Aydın", urun: "DAP Gübre", urunTipi: "Gübre", miktar: "25", birim: "Çuval", lot: "LOT-245", parti: "PRT-12", skt: "2027", tarla: "Biber Tarlası", dekar: "120", kullanimAmaci: "Gübreleme", aciklama: "Acil teslimat", teslimDurumu: "Teslim Edildi" },
+    { id: 1, teslimNo: "TES-0001", musteri: "Ege TarÄ±m A.Å.", telefon: "0232 445 6789", teslimTarihi: "05.06.2026", teslimEden: "Ali YÄ±lmaz", teslimAlan: "Mehmet AydÄ±n", urun: "DAP GÃ¼bre", urunTipi: "GÃ¼bre", miktar: "25", birim: "Ã‡uval", lot: "LOT-245", parti: "PRT-12", skt: "2027", tarla: "Biber TarlasÄ±", dekar: "120", kullanimAmaci: "GÃ¼breleme", aciklama: "Acil teslimat", teslimDurumu: "Teslim Edildi" },
   ],
   cekTakibi: [
-    { id: 1, cekNo: "CHK-001", musteri: "Marmara Seracılık", banka: "Ziraat Bankası", sube: "Merkez", vadeTarihi: "15.06.2026", tutar: "₺45.000", durum: "Bekliyor", aciklama: "Firma çek" },
+    { id: 1, cekNo: "CHK-001", musteri: "Marmara SeracÄ±lÄ±k", banka: "Ziraat BankasÄ±", sube: "Merkez", vadeTarihi: "15.06.2026", tutar: "â‚º45.000", durum: "Bekliyor", aciklama: "Firma Ã§ek" },
   ],
   senetTakibi: [
-    { id: 1, senetNo: "SNT-001", borclu: "Ahmet Yılmaz", alacakli: "Ege Tarım A.Ş.", vadeTarihi: "20.06.2026", tutar: "₺28.000", durum: "Gecikti", aciklama: "Borcun takibi" },
+    { id: 1, senetNo: "SNT-001", borclu: "Ahmet YÄ±lmaz", alacakli: "Ege TarÄ±m A.Å.", vadeTarihi: "20.06.2026", tutar: "â‚º28.000", durum: "Gecikti", aciklama: "Borcun takibi" },
   ],
   farmerCards: [
-    { id: 1, ciftci: "Ahmet Yılmaz", telefon: "0532 451 2234", tarla: "Biber Tarlası", toplamTarla: "3", dekar: "120", bakiye: "₺24.500 Borç", sonUrun: "DAP Gübre", sonraki: "15 gün sonra kontrol" },
-    { id: 2, ciftci: "Mehmet Demir", telefon: "0541 778 0099", tarla: "Buğday Tarlası", toplamTarla: "2", dekar: "80", bakiye: "₺8.300 Alacak", sonUrun: "Sıvı Gübre", sonraki: "10 gün sonra uygulama" },
-    { id: 3, ciftci: "Zeynep Arslan", telefon: "0530 221 1122", tarla: "Domates Serası", toplamTarla: "1", dekar: "12", bakiye: "₺0", sonUrun: "Fungisit X200", sonraki: "7 gün sonra kontrol" },
+    { id: 1, ciftci: "Ahmet YÄ±lmaz", telefon: "0532 451 2234", tarla: "Biber TarlasÄ±", toplamTarla: "3", dekar: "120", bakiye: "â‚º24.500 BorÃ§", sonUrun: "DAP GÃ¼bre", sonraki: "15 gÃ¼n sonra kontrol" },
+    { id: 2, ciftci: "Mehmet Demir", telefon: "0541 778 0099", tarla: "BuÄŸday TarlasÄ±", toplamTarla: "2", dekar: "80", bakiye: "â‚º8.300 Alacak", sonUrun: "SÄ±vÄ± GÃ¼bre", sonraki: "10 gÃ¼n sonra uygulama" },
+    { id: 3, ciftci: "Zeynep Arslan", telefon: "0530 221 1122", tarla: "Domates SerasÄ±", toplamTarla: "1", dekar: "12", bakiye: "â‚º0", sonUrun: "Fungisit X200", sonraki: "7 gÃ¼n sonra kontrol" },
   ],
   fieldTracking: [
-    { id: 1, ciftci: "Ahmet Yılmaz", tarla: "Biber Tarlası", urun: "DAP Gübre", doz: "25 kg/da", uygulama: "12.05.2026", sonraki: "27.05.2026", durum: "Uygulandı" },
-    { id: 2, ciftci: "Mehmet Demir", tarla: "Buğday Tarlası", urun: "Sıvı Gübre", doz: "2 lt/da", uygulama: "14.05.2026", sonraki: "24.05.2026", durum: "Planlandı" },
-    { id: 3, ciftci: "Zeynep Arslan", tarla: "Domates Serası", urun: "Fungisit X200", doz: "150 gr/100 L", uygulama: "16.05.2026", sonraki: "23.05.2026", durum: "Gecikti" },
+    { id: 1, ciftci: "Ahmet YÄ±lmaz", tarla: "Biber TarlasÄ±", urun: "DAP GÃ¼bre", doz: "25 kg/da", uygulama: "12.05.2026", sonraki: "27.05.2026", durum: "UygulandÄ±" },
+    { id: 2, ciftci: "Mehmet Demir", tarla: "BuÄŸday TarlasÄ±", urun: "SÄ±vÄ± GÃ¼bre", doz: "2 lt/da", uygulama: "14.05.2026", sonraki: "24.05.2026", durum: "PlanlandÄ±" },
+    { id: 3, ciftci: "Zeynep Arslan", tarla: "Domates SerasÄ±", urun: "Fungisit X200", doz: "150 gr/100 L", uygulama: "16.05.2026", sonraki: "23.05.2026", durum: "Gecikti" },
   ],
   calendar: [
-    { id: 1, zaman: "Bugün", ciftci: "Ahmet Yılmaz", islem: "İlaçlama kontrolü", tarla: "Biber Tarlası", durum: "Bekliyor" },
-    { id: 2, zaman: "Bu Hafta", ciftci: "Mehmet Demir", islem: "2. gübreleme", tarla: "Buğday Tarlası", durum: "Planlandı" },
-    { id: 3, zaman: "Geciken", ciftci: "Zeynep Arslan", islem: "Mantar kontrolü", tarla: "Domates Serası", durum: "Acil" },
+    { id: 1, zaman: "BugÃ¼n", ciftci: "Ahmet YÄ±lmaz", islem: "Ä°laÃ§lama kontrolÃ¼", tarla: "Biber TarlasÄ±", durum: "Bekliyor" },
+    { id: 2, zaman: "Bu Hafta", ciftci: "Mehmet Demir", islem: "2. gÃ¼breleme", tarla: "BuÄŸday TarlasÄ±", durum: "PlanlandÄ±" },
+    { id: 3, zaman: "Geciken", ciftci: "Zeynep Arslan", islem: "Mantar kontrolÃ¼", tarla: "Domates SerasÄ±", durum: "Acil" },
   ],
   barcode: [
-    { id: 1, barkod: "8690001234567", urun: "DAP Gübre", lot: "LOT-245", stok: "250 Adet", islem: "Yazdır", durum: "Aktif" },
-    { id: 2, barkod: "8690007654321", urun: "Fungisit X200", lot: "LOT-881", stok: "74 Adet", islem: "QR Oluştur", durum: "Kritik" },
-    { id: 3, barkod: "8690005553322", urun: "Potasyum Nitrat", lot: "LOT-109", stok: "112 Adet", islem: "Stok Giriş", durum: "Aktif" },
+    { id: 1, barkod: "8690001234567", urun: "DAP GÃ¼bre", lot: "LOT-245", stok: "250 Adet", islem: "YazdÄ±r", durum: "Aktif" },
+    { id: 2, barkod: "8690007654321", urun: "Fungisit X200", lot: "LOT-881", stok: "74 Adet", islem: "QR OluÅŸtur", durum: "Kritik" },
+    { id: 3, barkod: "8690005553322", urun: "Potasyum Nitrat", lot: "LOT-109", stok: "112 Adet", islem: "Stok GiriÅŸ", durum: "Aktif" },
   ],
 };
 
 const pageInfo = {
-  customers: ["Müşteriler", "Müşteri kayıtlarını ve iletişim bilgilerini yönetin."],
-  dealers: ["Bayiler", "Bölge bayi performanslarını takip edin."],
-  products: ["Ürünler", "Gübre, ilaç, tohum ve besin ürünlerini yönetin."],
-  inventory: ["Envanter", "Depo giriş çıkış ve kritik stokları takip edin."],
-  orders: ["Siparişler", "Sipariş durumlarını ve satış sürecini yönetin."],
-  accounts: ["Cari Hesap", "Müşteri alacak, borç ve bakiye takibi."],
-  collections: ["Tahsilatlar", "Ödeme ve tahsilat hareketlerini takip edin."],
-  cashbank: ["Kasa & Banka", "Kasa, banka, gelir ve gider özetleri."],
-  offers: ["Teklifler", "Müşteri tekliflerini oluşturun ve takip edin."],
-  deliveries: ["Teslimatlar", "Sipariş teslimatlarını ve tutanakları yönetin."],
-  cekTakibi: ["Çek Takibi", "Çeklerin vade, durum ve cari ilişkisinin takibini yapın."],
+  customers: ["MÃ¼ÅŸteriler", "MÃ¼ÅŸteri kayÄ±tlarÄ±nÄ± ve iletiÅŸim bilgilerini yÃ¶netin."],
+  dealers: ["Bayiler", "BÃ¶lge bayi performanslarÄ±nÄ± takip edin."],
+  products: ["ÃœrÃ¼nler", "GÃ¼bre, ilaÃ§, tohum ve besin Ã¼rÃ¼nlerini yÃ¶netin."],
+  inventory: ["Envanter", "Depo giriÅŸ Ã§Ä±kÄ±ÅŸ ve kritik stoklarÄ± takip edin."],
+  orders: ["SipariÅŸler", "SipariÅŸ durumlarÄ±nÄ± ve satÄ±ÅŸ sÃ¼recini yÃ¶netin."],
+  accounts: ["Cari Hesap", "MÃ¼ÅŸteri alacak, borÃ§ ve bakiye takibi."],
+  collections: ["Tahsilatlar", "Ã–deme ve tahsilat hareketlerini takip edin."],
+  cashbank: ["Kasa & Banka", "Kasa, banka, gelir ve gider Ã¶zetleri."],
+  offers: ["Teklifler", "MÃ¼ÅŸteri tekliflerini oluÅŸturun ve takip edin."],
+  deliveries: ["Teslimatlar", "SipariÅŸ teslimatlarÄ±nÄ± ve tutanaklarÄ± yÃ¶netin."],
+  cekTakibi: ["Ã‡ek Takibi", "Ã‡eklerin vade, durum ve cari iliÅŸkisinin takibini yapÄ±n."],
   senetTakibi: ["Senet Takibi", "Senetlerin vadesini ve tahsil durumunu izleyin."],
-  companySettings: ["Firma Ayarları", "Teklif PDF'leri için şirket bilgilerini güncelleyin."],
-  farmerCards: ["Çiftçi Kartı", "Çiftçinin tüm geçmişini tek ekranda görüntüleyin."],
-  fieldTracking: ["Tarla Takibi", "Hangi tarlaya hangi ürün verildiğini takip edin."],
-  calendar: ["Periyodik Takvim", "Yaklaşan ve geciken tarımsal işlemleri yönetin."],
-  barcode: ["Barkod Yönetimi", "Barkod, QR kod, stok giriş ve çıkış işlemleri."],
+  companySettings: ["Firma AyarlarÄ±", "Teklif PDF'leri iÃ§in ÅŸirket bilgilerini gÃ¼ncelleyin."],
+  farmerCards: ["Ã‡iftÃ§i KartÄ±", "Ã‡iftÃ§inin tÃ¼m geÃ§miÅŸini tek ekranda gÃ¶rÃ¼ntÃ¼leyin."],
+  fieldTracking: ["Tarla Takibi", "Hangi tarlaya hangi Ã¼rÃ¼n verildiÄŸini takip edin."],
+  calendar: ["Periyodik Takvim", "YaklaÅŸan ve geciken tarÄ±msal iÅŸlemleri yÃ¶netin."],
+  barcode: ["Barkod YÃ¶netimi", "Barkod, QR kod, stok giriÅŸ ve Ã§Ä±kÄ±ÅŸ iÅŸlemleri."],
 };
 
 function App() {
@@ -219,8 +219,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [aiInput, setAiInput] = useState("");
   const [chat, setChat] = useState([
-    { from: "ai", text: "Merhaba, stok, müşteri, satış ve tarla işlemleri hakkında soru sorabilirsin." },
-    { from: "ai", text: "Öneri: DAP Gübre kritik seviyeye yaklaşıyor. Yeni sipariş açılmalı." },
+    { from: "ai", text: "Merhaba, stok, mÃ¼ÅŸteri, satÄ±ÅŸ ve tarla iÅŸlemleri hakkÄ±nda soru sorabilirsin." },
+    { from: "ai", text: "Ã–neri: DAP GÃ¼bre kritik seviyeye yaklaÅŸÄ±yor. Yeni sipariÅŸ aÃ§Ä±lmalÄ±." },
   ]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -231,7 +231,7 @@ function App() {
 
   const [salesData, setSalesData] = useState([
     { month: "Oca", value: 38500 },
-    { month: "Şub", value: 52000 },
+    { month: "Åub", value: 52000 },
     { month: "Mar", value: 45000 },
     { month: "Nis", value: 70000 },
     { month: "May", value: 62000 },
@@ -239,13 +239,13 @@ function App() {
   ]);
 
   const [alerts, setAlerts] = useState([
-    { id: 1, type: "Kritik Stok", text: "Fungisit X200 stoğu kritik.", related: { module: "inventory", id: 2 } },
-    { id: 2, type: "Geciken Tarla İşlemi", text: "Zeynep Arslan tarla kontrolü gecikti.", related: { module: "fieldTracking", id: 3 } },
-    { id: 3, type: "Cari Takip", text: "Marmara Seracılık ödeme gecikmesi.", related: { module: "accounts", id: 3 } },
+    { id: 1, type: "Kritik Stok", text: "Fungisit X200 stoÄŸu kritik.", related: { module: "inventory", id: 2 } },
+    { id: 2, type: "Geciken Tarla Ä°ÅŸlemi", text: "Zeynep Arslan tarla kontrolÃ¼ gecikti.", related: { module: "fieldTracking", id: 3 } },
+    { id: 3, type: "Cari Takip", text: "Marmara SeracÄ±lÄ±k Ã¶deme gecikmesi.", related: { module: "accounts", id: 3 } },
   ]);
 
-  const [tableFilter, setTableFilter] = useState("Tümü");
-  const [calendarTab, setCalendarTab] = useState("Bugün");
+  const [tableFilter, setTableFilter] = useState("TÃ¼mÃ¼");
+  const [calendarTab, setCalendarTab] = useState("BugÃ¼n");
   const [tooltip, setTooltip] = useState(null);
   const [company, setCompany] = useState(() => {
     if (typeof window === "undefined") return {
@@ -294,7 +294,7 @@ function App() {
   const saveCompanySettings = () => {
     if (typeof window === "undefined") return;
     window.localStorage.setItem("agropilot_company_settings", JSON.stringify(company));
-    alert("Firma ayarları kaydedildi");
+    alert("Firma ayarlarÄ± kaydedildi");
   };
 
   const normalizeWhatsAppNumber = (phone = "") => {
@@ -315,7 +315,7 @@ function App() {
 
   const deleteFarmerRecord = (record = {}) => {
     if (!record?.id) return;
-    if (window.confirm("Bu çiftçi kaydını silmek istediğinize emin misiniz?")) {
+    if (window.confirm("Bu Ã§iftÃ§i kaydÄ±nÄ± silmek istediÄŸinize emin misiniz?")) {
       setData((prev) => ({
         ...prev,
         farmerCards: prev.farmerCards.filter((item) => item.id !== record.id),
@@ -364,7 +364,7 @@ function App() {
       <html lang="tr">
       <head>
         <meta charset="UTF-8" />
-        <title>Teklif Önizleme - ${escapeHtml(offer.teklifNo)}</title>
+        <title>Teklif Ã–nizleme - ${escapeHtml(offer.teklifNo)}</title>
         <style>
           body { margin:0; font-family: Arial, sans-serif; background: #07130f; color: #e5e7eb; }
           .page { max-width: 820px; margin: 0 auto; padding: 36px; }
@@ -387,7 +387,7 @@ function App() {
       <body>
         <div class="page">
           <div class="printBar">
-            <button class="printBtn" onclick="window.print();">Yazdır / PDF İndir</button>
+            <button class="printBtn" onclick="window.print();">YazdÄ±r / PDF Ä°ndir</button>
           </div>
           <div class="card">
             <div class="headerTop">
@@ -400,10 +400,10 @@ function App() {
               </div>
             </div>
             <div class="row"><div><label>Teklif No</label><span>${escapeHtml(offer.teklifNo)}</span></div><div><label>Durum</label><span>${escapeHtml(offer.durum)}</span></div></div>
-            <div class="row"><div><label>Müşteri</label><span>${escapeHtml(offer.musteri)}</span></div><div><label>Şehir</label><span>${escapeHtml(offer.sehir)}</span></div></div>
-            <div class="row"><div><label>Tarih</label><span>${escapeHtml(offer.tarih)}</span></div><div><label>Geçerlilik</label><span>${escapeHtml(offer.gecerlilik)}</span></div></div>
+            <div class="row"><div><label>MÃ¼ÅŸteri</label><span>${escapeHtml(offer.musteri)}</span></div><div><label>Åehir</label><span>${escapeHtml(offer.sehir)}</span></div></div>
+            <div class="row"><div><label>Tarih</label><span>${escapeHtml(offer.tarih)}</span></div><div><label>GeÃ§erlilik</label><span>${escapeHtml(offer.gecerlilik)}</span></div></div>
             <div class="row"><div style="flex:1"><label>Tutar</label><span>${escapeHtml(offer.tutar)}</span></div></div>
-            <div class="footer">Bu teklif ${companyName} tarafından oluşturulmuştur.</div>
+            <div class="footer">Bu teklif ${companyName} tarafÄ±ndan oluÅŸturulmuÅŸtur.</div>
           </div>
         </div>
       </body>
@@ -432,7 +432,7 @@ function App() {
       <html lang="tr">
       <head>
         <meta charset="UTF-8" />
-        <title>Teslim Tutanağı - ${escapeHtml(delivery.teslimNo)}</title>
+        <title>Teslim TutanaÄŸÄ± - ${escapeHtml(delivery.teslimNo)}</title>
         <style>
           body { margin:0; font-family: Arial, sans-serif; background: #07130f; color: #e5e7eb; }
           .page { max-width: 820px; margin: 0 auto; padding: 36px; }
@@ -459,7 +459,7 @@ function App() {
       <body>
         <div class="page">
           <div class="printBar">
-            <button class="printBtn" onclick="window.print();">Yazdır / PDF İndir</button>
+            <button class="printBtn" onclick="window.print();">YazdÄ±r / PDF Ä°ndir</button>
           </div>
           <div class="card">
             <div class="headerTop">
@@ -471,22 +471,22 @@ function App() {
                 ${company.taxOffice || company.taxNumber ? `<div>${escapeHtml(company.taxOffice)} ${escapeHtml(company.taxNumber)}</div>` : ""}
               </div>
             </div>
-            <div class="title">TESLİM TUTANAĞI</div>
+            <div class="title">TESLÄ°M TUTANAÄI</div>
             <div class="section">
               <div class="row"><div><label>Teslim No</label><span>${escapeHtml(delivery.teslimNo)}</span></div><div><label>Teslim Tarihi</label><span>${escapeHtml(delivery.teslimTarihi)}</span></div></div>
-              <div class="row"><div><label>Müşteri / Çiftçi</label><span>${escapeHtml(delivery.musteri)}</span></div><div><label>Telefon</label><span>${escapeHtml(delivery.telefon)}</span></div></div>
+              <div class="row"><div><label>MÃ¼ÅŸteri / Ã‡iftÃ§i</label><span>${escapeHtml(delivery.musteri)}</span></div><div><label>Telefon</label><span>${escapeHtml(delivery.telefon)}</span></div></div>
             </div>
             <div class="section">
-              <h3>Ürün Bilgileri</h3>
-              <div class="row"><div><label>Ürün</label><span>${escapeHtml(delivery.urun)}</span></div><div><label>Tip</label><span>${escapeHtml(delivery.urunTipi)}</span></div></div>
+              <h3>ÃœrÃ¼n Bilgileri</h3>
+              <div class="row"><div><label>ÃœrÃ¼n</label><span>${escapeHtml(delivery.urun)}</span></div><div><label>Tip</label><span>${escapeHtml(delivery.urunTipi)}</span></div></div>
               <div class="row"><div><label>Miktar</label><span>${escapeHtml(delivery.miktar)} ${escapeHtml(delivery.birim)}</span></div><div><label>Lot / Parti</label><span>${escapeHtml(delivery.lot)} / ${escapeHtml(delivery.parti)}</span></div></div>
               <div class="row"><div><label>SKT</label><span>${escapeHtml(delivery.skt)}</span></div><div><label>Tarla</label><span>${escapeHtml(delivery.tarla)}</span></div></div>
-              <div class="row"><div style="flex:1"><label>Kullanım Amacı</label><span>${escapeHtml(delivery.kullanimAmaci)}</span></div></div>
+              <div class="row"><div style="flex:1"><label>KullanÄ±m AmacÄ±</label><span>${escapeHtml(delivery.kullanimAmaci)}</span></div></div>
             </div>
             <div class="section"><div class="row"><div style="flex:1"><label>Notlar</label><span>${escapeHtml(delivery.aciklama)}</span></div></div></div>
             <div class="signatures">
-              <div class="signBox"><strong>Teslim Eden</strong><div>${escapeHtml(delivery.teslimEden)}</div><div>Ad Soyad / İmza</div></div>
-              <div class="signBox"><strong>Teslim Alan</strong><div>${escapeHtml(delivery.teslimAlan)}</div><div>Ad Soyad / İmza</div></div>
+              <div class="signBox"><strong>Teslim Eden</strong><div>${escapeHtml(delivery.teslimEden)}</div><div>Ad Soyad / Ä°mza</div></div>
+              <div class="signBox"><strong>Teslim Alan</strong><div>${escapeHtml(delivery.teslimAlan)}</div><div>Ad Soyad / Ä°mza</div></div>
             </div>
           </div>
         </div>
@@ -522,7 +522,7 @@ function App() {
       }
 
       const list = prev[modal.module] || [];
-      if (modal.type === "Yeni Kayıt") {
+      if (modal.type === "Yeni KayÄ±t") {
         return { ...prev, [modal.module]: [{ ...modal.values, id: Date.now() }, ...list] };
       }
       return {
@@ -539,12 +539,12 @@ function App() {
     let answer = "Demo analiz: ";
     const lower = text.toLowerCase();
 
-    if (lower.includes("stok")) answer += "Kritik stokta Fungisit X200 ve DAP Gübre görünüyor. En kısa sürede tedarik önerilir.";
-    else if (lower.includes("borç") || lower.includes("borc")) answer += `Cari hesap analizi: Toplam borç ₺${data.accounts.reduce((s,a)=>s+Number(String(a.borc).replace(/[^0-9]/g,'')),0).toLocaleString('tr-TR')}, en yüksek borçlu: ${data.accounts.reduce((a,b)=>{ const nb = Number(String(b.borc).replace(/[^0-9]/g,'')); return nb> (a.val||0)? {id:b.id,name:b.musteri,val:nb}:a},{}) .name || '—' }.`;
-    else if (lower.includes("müşteri") || lower.includes("risk")) answer += "Marmara Seracılık ödeme gecikmesi nedeniyle riskli müşteri olarak işaretlendi.";
-    else if (lower.includes("tarla") || lower.includes("ilaç")) answer += "Zeynep Arslan Domates Serası için mantar kontrolü gecikmiş görünüyor.";
-    else if (lower.includes("satış")) answer += "Bu ay en güçlü satış fırsatı Ege Tarım A.Ş. ve Güneydoğu Tarım Grubu tarafında.";
-    else answer += "Satış, stok, cari hesap ve tarla uygulamalarında takip edilebilir bir işlem görünüyor.";
+    if (lower.includes("stok")) answer += "Kritik stokta Fungisit X200 ve DAP GÃ¼bre gÃ¶rÃ¼nÃ¼yor. En kÄ±sa sÃ¼rede tedarik Ã¶nerilir.";
+    else if (lower.includes("borÃ§") || lower.includes("borc")) answer += `Cari hesap analizi: Toplam borÃ§ â‚º${data.accounts.reduce((s,a)=>s+Number(String(a.borc).replace(/[^0-9]/g,'')),0).toLocaleString('tr-TR')}, en yÃ¼ksek borÃ§lu: ${data.accounts.reduce((a,b)=>{ const nb = Number(String(b.borc).replace(/[^0-9]/g,'')); return nb> (a.val||0)? {id:b.id,name:b.musteri,val:nb}:a},{}) .name || 'â€”' }.`;
+    else if (lower.includes("mÃ¼ÅŸteri") || lower.includes("risk")) answer += "Marmara SeracÄ±lÄ±k Ã¶deme gecikmesi nedeniyle riskli mÃ¼ÅŸteri olarak iÅŸaretlendi.";
+    else if (lower.includes("tarla") || lower.includes("ilaÃ§")) answer += "Zeynep Arslan Domates SerasÄ± iÃ§in mantar kontrolÃ¼ gecikmiÅŸ gÃ¶rÃ¼nÃ¼yor.";
+    else if (lower.includes("satÄ±ÅŸ")) answer += "Bu ay en gÃ¼Ã§lÃ¼ satÄ±ÅŸ fÄ±rsatÄ± Ege TarÄ±m A.Å. ve GÃ¼neydoÄŸu TarÄ±m Grubu tarafÄ±nda.";
+    else answer += "SatÄ±ÅŸ, stok, cari hesap ve tarla uygulamalarÄ±nda takip edilebilir bir iÅŸlem gÃ¶rÃ¼nÃ¼yor.";
 
     setChat((prev) => [...prev, { from: "user", text }, { from: "ai", text: answer }]);
     setAiInput("");
@@ -573,20 +573,20 @@ function App() {
     return (
       <>
         <section className="stats four">
-          <div className="stat"><span>Toplam Satış (6 ay)</span><b>{formatMoney(totalSales)}</b></div>
-          <div className="stat"><span>En Yüksek Ay</span><b>{highestMonth()}</b></div>
-          <div className="stat"><span>Ortalama Satış</span><b>{formatMoney(Math.round(totalSales / salesData.length))}</b></div>
+          <div className="stat"><span>Toplam SatÄ±ÅŸ (6 ay)</span><b>{formatMoney(totalSales)}</b></div>
+          <div className="stat"><span>En YÃ¼ksek Ay</span><b>{highestMonth()}</b></div>
+          <div className="stat"><span>Ortalama SatÄ±ÅŸ</span><b>{formatMoney(Math.round(totalSales / salesData.length))}</b></div>
           <div className="stat"><span>Kritik Stok</span><b>{alerts.length}</b></div>
         </section>
 
         <section className="dashGrid">
           <div className="panel chartPanel">
-            <h3>Aylık Satış Grafiği</h3>
+            <h3>AylÄ±k SatÄ±ÅŸ GrafiÄŸi</h3>
             <div className="donutSection">
               <div className="donutChart" style={{ background: `conic-gradient(${donutGradient})` }}>
                 <div className="donutCenter">
                   <strong>{formatMoney(totalSales)}</strong>
-                  <span>Toplam Satış</span>
+                  <span>Toplam SatÄ±ÅŸ</span>
                 </div>
               </div>
               <div className="donutLegend">
@@ -604,9 +604,9 @@ function App() {
           </div>
 
           <div className="panel warningsPanel">
-            <h3>Kritik Uyarılar</h3>
+            <h3>Kritik UyarÄ±lar</h3>
             {alerts.map((a) => (
-              <div key={a.id} className="warning" onClick={() => openModal("Uyarı Detayı", "alerts", a)}>
+              <div key={a.id} className="warning" onClick={() => openModal("UyarÄ± DetayÄ±", "alerts", a)}>
                 <AlertTriangle size={16} />
                 <div className="warningBody">
                   <b>{a.type}</b>
@@ -618,14 +618,14 @@ function App() {
         </section>
 
       <section className="panel">
-        <div className="panelHead"><h3>Son Siparişler</h3></div>
+        <div className="panelHead"><h3>Son SipariÅŸler</h3></div>
         {renderTable("orders", data.orders, false)}
       </section>
     </>
   );
   };
 
-  function formatMoney(v) { return `₺${v.toLocaleString('tr-TR')}`; }
+  function formatMoney(v) { return `â‚º${v.toLocaleString('tr-TR')}`; }
   function highestMonth() { const max = Math.max(...salesData.map((x) => x.value)); const item = salesData.find((x) => x.value === max); return `${item.month} (${formatMoney(item.value)})`; }
 
   const farmerCards = () => (
@@ -643,13 +643,13 @@ function App() {
             </div>
             <div className="history">
               <b>Son Uygulama</b>
-              <p>{f.tarla} → {f.sonUrun}</p>
-              <b>Sonraki İşlem</b>
+              <p>{f.tarla} â†’ {f.sonUrun}</p>
+              <b>Sonraki Ä°ÅŸlem</b>
               <p>{f.sonraki}</p>
             </div>
             <div className="actions">
               <button onClick={() => openModal("Detay", "farmerCards", f)}><Eye size={14} /></button>
-              <button onClick={() => openModal("Düzenle", "farmerCards", f)}><Pencil size={14} /></button>
+              <button onClick={() => openModal("DÃ¼zenle", "farmerCards", f)}><Pencil size={14} /></button>
               <button onClick={() => deleteFarmerRecord(f)}><Trash2 size={14} /></button>
               <button className="whatsappBtn" onClick={() => sendWhatsApp(f)}><WhatsAppIcon size={18} /></button>
             </div>
@@ -662,13 +662,13 @@ function App() {
   const calendarPage = () => (
     <div>
       <div style={{display:'flex', gap:8, marginBottom:12}}>
-        {["Bugün", "Bu Hafta", "Geciken"].map((t) => (
+        {["BugÃ¼n", "Bu Hafta", "Geciken"].map((t) => (
           <button key={t} className={calendarTab===t? 'primary' : ''} onClick={() => setCalendarTab(t)}>{t}</button>
         ))}
-        <button style={{marginLeft:'auto'}} onClick={() => openModal('Yeni Kayıt','calendar')}>Yeni İşlem Ekle</button>
+        <button style={{marginLeft:'auto'}} onClick={() => openModal('Yeni KayÄ±t','calendar')}>Yeni Ä°ÅŸlem Ekle</button>
       </div>
       <div className="calendarGrid">
-        {(data.calendar.filter((r) => (calendarTab==='Tümü' ? true : r.zaman === calendarTab))).map((r) => (
+        {(data.calendar.filter((r) => (calendarTab==='TÃ¼mÃ¼' ? true : r.zaman === calendarTab))).map((r) => (
           <div className="panel taskCard" key={r.id}>
             <h4>{r.islem}</h4>
             <p>{r.ciftci} / {r.tarla}</p>
@@ -676,8 +676,8 @@ function App() {
             <div style={{display:'flex', gap:8, marginTop:8}}>
               <button onClick={() => openModal('Detay','calendar',r)}>Detay</button>
               <button onClick={() => {
-                setData((prev)=>({ ...prev, calendar: prev.calendar.map(x=> x.id===r.id?{...x,durum:'Tamamlandı'}:x) }));
-              }}>Tamamlandı</button>
+                setData((prev)=>({ ...prev, calendar: prev.calendar.map(x=> x.id===r.id?{...x,durum:'TamamlandÄ±'}:x) }));
+              }}>TamamlandÄ±</button>
             </div>
           </div>
         ))}
@@ -688,10 +688,10 @@ function App() {
   const barcodePage = () => (
     <>
       <section className="barcodeTools">
-        <button className="primary" onClick={() => openModal("Yeni Kayıt", "barcode")}><Plus size={15} /> Barkod Oluştur</button>
-        <button onClick={() => alert("Demo: QR kod önizleme hazırlandı.")}><QrCode size={15} /> QR Kod</button>
-        <button onClick={() => alert("Demo: Yazdırma ekranı açıldı.")}><Printer size={15} /> Yazdır</button>
-        <button onClick={() => alert("Demo: Stok giriş/çıkış işlemi başlatıldı.")}><ArrowDownUp size={15} /> Stok Hareketi</button>
+        <button className="primary" onClick={() => openModal("Yeni KayÄ±t", "barcode")}><Plus size={15} /> Barkod OluÅŸtur</button>
+        <button onClick={() => alert("Demo: QR kod Ã¶nizleme hazÄ±rlandÄ±.")}><QrCode size={15} /> QR Kod</button>
+        <button onClick={() => alert("Demo: YazdÄ±rma ekranÄ± aÃ§Ä±ldÄ±.")}><Printer size={15} /> YazdÄ±r</button>
+        <button onClick={() => alert("Demo: Stok giriÅŸ/Ã§Ä±kÄ±ÅŸ iÅŸlemi baÅŸlatÄ±ldÄ±.")}><ArrowDownUp size={15} /> Stok Hareketi</button>
       </section>
       <section className="barcodeGrid">
         {filteredRows.map((b) => (
@@ -702,8 +702,8 @@ function App() {
             <span className="badge">{b.durum}</span>
             <div className="actions">
               <button onClick={() => openModal("Detay", "barcode", b)}><Eye size={14} /></button>
-              <button onClick={() => openModal("Düzenle", "barcode", b)}><Pencil size={14} /></button>
-              <button onClick={() => alert("Demo: Barkod yazdırılıyor.")}><Printer size={14} /></button>
+              <button onClick={() => openModal("DÃ¼zenle", "barcode", b)}><Pencil size={14} /></button>
+              <button onClick={() => alert("Demo: Barkod yazdÄ±rÄ±lÄ±yor.")}><Printer size={14} /></button>
             </div>
           </div>
         ))}
@@ -718,15 +718,15 @@ function App() {
       </div>
       <div className="companySettingsForm">
         <label>
-          Firma Adı
-          <input value={company.name} onChange={(e) => setCompany((prev) => ({ ...prev, name: e.target.value }))} placeholder="Firma adı" />
+          Firma AdÄ±
+          <input value={company.name} onChange={(e) => setCompany((prev) => ({ ...prev, name: e.target.value }))} placeholder="Firma adÄ±" />
         </label>
         <label>
           Logo URL
           <input value={company.logo} onChange={(e) => setCompany((prev) => ({ ...prev, logo: e.target.value }))} placeholder="https://..." />
         </label>
         <label>
-          Logo Yükleme
+          Logo YÃ¼kleme
           <input type="file" accept="image/*" onChange={(e) => {
             const file = e.target.files?.[0];
             if (!file) return;
@@ -765,8 +765,8 @@ function App() {
       </div>
       {company.logo && (
         <div className="companySettingsPreview">
-          <h4>Logo Önizleme</h4>
-          <img src={company.logo} alt="Logo Önizleme" />
+          <h4>Logo Ã–nizleme</h4>
+          <img src={company.logo} alt="Logo Ã–nizleme" />
         </div>
       )}
     </section>
@@ -774,7 +774,7 @@ function App() {
 
   const aiPage = () => (
     <section className="panel aiPanel">
-      <h3>Akıllı Tarım Asistanı</h3>
+      <h3>AkÄ±llÄ± TarÄ±m AsistanÄ±</h3>
       <div className="chatBox">
         {chat.map((m, i) => <div key={i} className={`msg ${m.from}`}>{m.text}</div>)}
       </div>
@@ -783,9 +783,9 @@ function App() {
           value={aiInput}
           onChange={(e) => setAiInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendAI()}
-          placeholder="Örn: Kritik stokları göster..."
+          placeholder="Ã–rn: Kritik stoklarÄ± gÃ¶ster..."
         />
-        <button className="primary" onClick={sendAI}><Send size={15} /> Gönder</button>
+        <button className="primary" onClick={sendAI}><Send size={15} /> GÃ¶nder</button>
       </div>
     </section>
   );
@@ -793,7 +793,7 @@ function App() {
   function renderTable(module, customRows = filteredRows, includePanel = true) {
     const keys = schemaFor(module);
     const showRows = customRows.filter((r) => {
-      if (tableFilter === "Tümü") return true;
+      if (tableFilter === "TÃ¼mÃ¼") return true;
       if (tableFilter === "Aktif") return String(r.durum || '').toLowerCase().includes('aktif');
       if (tableFilter === "Bekliyor") return String(r.durum || '').toLowerCase().includes('bekli') || String(r.durum||'').toLowerCase().includes('haz');
       if (tableFilter === "Kritik") return String(r.durum || '').toLowerCase().includes('kritik') || String(r.durum || '').toLowerCase().includes('gec') || String(r.durum||'').toLowerCase().includes('acil');
@@ -804,7 +804,7 @@ function App() {
         <thead>
           <tr>
             {keys.map((k) => <th key={k}>{label(k)}</th>)}
-            <th>İşlemler</th>
+            <th>Ä°ÅŸlemler</th>
           </tr>
         </thead>
         <tbody>
@@ -817,7 +817,7 @@ function App() {
               ))}
               <td className="actions">
                 <button onClick={() => openModal("Detay", module, row)}><Eye size={14} /></button>
-                <button onClick={() => openModal("Düzenle", module, row)}><Pencil size={14} /></button>
+                <button onClick={() => openModal("DÃ¼zenle", module, row)}><Pencil size={14} /></button>
                 <button className="whatsappBtn" onClick={() => sendWhatsApp(row)}><WhatsAppIcon size={18} /></button>
               {(module === "offers" || module === "deliveries") && (
                 <button className="pdfButton" onClick={() => (module === "offers" ? openOfferPdf(row) : openDeliveryPdf(row))}><Printer size={14} /> PDF</button>
@@ -861,7 +861,7 @@ function App() {
         <div className="panelHead">
           <h3>{pageInfo[module]?.[0] || "Liste"}</h3>
           <div className="tabs">
-            {['Tümü','Aktif','Bekliyor','Kritik'].map((t)=> (
+            {['TÃ¼mÃ¼','Aktif','Bekliyor','Kritik'].map((t)=> (
               <button key={t} className={tableFilter===t? 'selected' : ''} onClick={()=>setTableFilter(t)}>{t}</button>
             ))}
           </div>
@@ -882,18 +882,18 @@ function App() {
     return renderTable(page);
   };
 
-  const currentTitle = page === "dashboard" ? "Gösterge Paneli" : pageInfo[page]?.[0] || "Teklifler";
-  const currentDesc = page === "dashboard" ? "Sisteme genel bakış ve temel metrikler." : pageInfo[page]?.[1] || "Kayıtları yönetin.";
+  const currentTitle = page === "dashboard" ? "GÃ¶sterge Paneli" : pageInfo[page]?.[0] || "Teklifler";
+  const currentDesc = page === "dashboard" ? "Sisteme genel bakÄ±ÅŸ ve temel metrikler." : pageInfo[page]?.[1] || "KayÄ±tlarÄ± yÃ¶netin.";
 
   return (
     <div className="app">
       <aside>
-        <div className="logo">🌱 <span>AgroPilot</span></div>
+        <div className="logo">ğŸŒ± <span>AgroPilot</span></div>
         {menuGroups.map((group) => (
           <div className="group" key={group.title}>
             <small>{group.title}</small>
             {group.items.map(([id, title, Icon]) => (
-              <button key={id} onClick={() => { setPage(id); setSearch(""); setTableFilter('Tümü'); setMobileMenuOpen(false); }} className={page === id ? "active" : ""}>
+              <button key={id} onClick={() => { setPage(id); setSearch(""); setTableFilter('TÃ¼mÃ¼'); setMobileMenuOpen(false); }} className={page === id ? "active" : ""}>
                 <Icon size={15} /> {title}
               </button>
             ))}
@@ -911,7 +911,7 @@ function App() {
             <p>{currentDesc}</p>
           </div>
           {page !== "dashboard" && page !== "ai" && page !== "companySettings" && (
-            <button className="primary" onClick={() => openModal("Yeni Kayıt", page)}>
+            <button className="primary" onClick={() => openModal("Yeni KayÄ±t", page)}>
               <Plus size={15} /> Yeni Ekle
             </button>
           )}
@@ -919,9 +919,9 @@ function App() {
 
         {page !== "dashboard" && page !== "ai" && page !== "companySettings" && (
           <section className="stats">
-            <div className="stat"><span>Toplam Kayıt</span><b>{rows.length}</b></div>
-            <div className="stat"><span>Aktif İşlem</span><b>{Math.max(1, rows.length - 1)}</b></div>
-            <div className="stat"><span>Güncel Durum</span><b>Takipte</b></div>
+            <div className="stat"><span>Toplam KayÄ±t</span><b>{rows.length}</b></div>
+            <div className="stat"><span>Aktif Ä°ÅŸlem</span><b>{Math.max(1, rows.length - 1)}</b></div>
+            <div className="stat"><span>GÃ¼ncel Durum</span><b>Takipte</b></div>
           </section>
         )}
 
@@ -933,14 +933,14 @@ function App() {
           <div className="modalBox">
             <button className="close" onClick={() => setModal(null)}><X size={16} /></button>
             <h2>{modal.type}</h2>
-            <p className="modalDesc">{pageInfo[modal.module]?.[0] || "Kayıt"} işlem paneli</p>
+            <p className="modalDesc">{pageInfo[modal.module]?.[0] || "KayÄ±t"} iÅŸlem paneli</p>
 
             {modal.type === "Sil" ? (
               <div className="deleteBox">
                 <AlertTriangle size={32} />
-                <p>Bu kaydı silmek istediğine emin misin?</p>
+                <p>Bu kaydÄ± silmek istediÄŸine emin misin?</p>
               </div>
-            ) : modal.module === 'alerts' && modal.type === 'Uyarı Detayı' ? (
+            ) : modal.module === 'alerts' && modal.type === 'UyarÄ± DetayÄ±' ? (
               <div style={{padding:12}}>
                 <h3>{modal.record.type}</h3>
                 <p>{modal.record.text}</p>
@@ -948,8 +948,8 @@ function App() {
                   <button className="primary" onClick={() => {
                     setAlerts((prev) => prev.filter(a => a.id !== modal.record.id));
                     setModal(null);
-                  }}>Çözüldü</button>
-                  <button onClick={() => { openModal('Detay', modal.record.related.module, data[modal.record.related.module].find(x=>x.id===modal.record.related.id)); }}>İlgili Kayıt</button>
+                  }}>Ã‡Ã¶zÃ¼ldÃ¼</button>
+                  <button onClick={() => { openModal('Detay', modal.record.related.module, data[modal.record.related.module].find(x=>x.id===modal.record.related.id)); }}>Ä°lgili KayÄ±t</button>
                 </div>
               </div>
             ) : (
@@ -998,19 +998,19 @@ function App() {
 
 function label(key) {
   const map = {
-    firma: "Firma", sehir: "Şehir", telefon: "Telefon", ciro: "Ciro", durum: "Durum",
-    bayi: "Bayi", bolge: "Bölge", yetkili: "Yetkili", satis: "Satış",
-    urun: "Ürün", kategori: "Kategori", lot: "Lot No", parti: "Parti No", skt: "SKT", stok: "Stok",
-    depo: "Depo", giris: "Giriş", cikis: "Çıkış", kalan: "Kalan",
-    no: "No", musteri: "Müşteri", tutar: "Tutar", tarih: "Tarih",
-    borc: "Borç", alacak: "Alacak", bakiye: "Bakiye",
-    tahsilatNo: "Tahsilat No", yontem: "Yöntem",
+    firma: "Firma", sehir: "Åehir", telefon: "Telefon", ciro: "Ciro", durum: "Durum",
+    bayi: "Bayi", bolge: "BÃ¶lge", yetkili: "Yetkili", satis: "SatÄ±ÅŸ",
+    urun: "ÃœrÃ¼n", kategori: "Kategori", lot: "Lot No", parti: "Parti No", skt: "SKT", stok: "Stok",
+    depo: "Depo", giris: "GiriÅŸ", cikis: "Ã‡Ä±kÄ±ÅŸ", kalan: "Kalan",
+    no: "No", musteri: "MÃ¼ÅŸteri", tutar: "Tutar", tarih: "Tarih",
+    borc: "BorÃ§", alacak: "Alacak", bakiye: "Bakiye",
+    tahsilatNo: "Tahsilat No", yontem: "YÃ¶ntem",
     hesap: "Hesap", tip: "Tip", hareket: "Hareket",
-    teklifNo: "Teklif No", gecerlilik: "Geçerlilik",
-    ciftci: "Çiftçi", tarla: "Tarla", toplamTarla: "Tarla Sayısı", dekar: "Dekar", sonUrun: "Son Ürün", sonraki: "Sonraki İşlem",
-    doz: "Doz", uygulama: "Uygulama", zaman: "Zaman", islem: "İşlem", barkod: "Barkod No",
-    teslimNo: "Teslim No", telefon: "Telefon", teslimTarihi: "Teslim Tarihi", teslimEden: "Teslim Eden Personel", teslimAlan: "Teslim Alan Kişi", urunTipi: "Ürün Tipi", miktar: "Miktar", birim: "Birim", parti: "Parti No", kullanimAmaci: "Kullanım Amacı", aciklama: "Açıklama / Not", teslimDurumu: "Teslim Durumu",
-    cekNo: "Çek No", banka: "Banka", sube: "Şube", vadeTarihi: "Vade Tarihi", borclu: "Borçlu", alacakli: "Alacaklı",
+    teklifNo: "Teklif No", gecerlilik: "GeÃ§erlilik",
+    ciftci: "Ã‡iftÃ§i", tarla: "Tarla", toplamTarla: "Tarla SayÄ±sÄ±", dekar: "Dekar", sonUrun: "Son ÃœrÃ¼n", sonraki: "Sonraki Ä°ÅŸlem",
+    doz: "Doz", uygulama: "Uygulama", zaman: "Zaman", islem: "Ä°ÅŸlem", barkod: "Barkod No",
+    teslimNo: "Teslim No", telefon: "Telefon", teslimTarihi: "Teslim Tarihi", teslimEden: "Teslim Eden Personel", teslimAlan: "Teslim Alan KiÅŸi", urunTipi: "ÃœrÃ¼n Tipi", miktar: "Miktar", birim: "Birim", parti: "Parti No", kullanimAmaci: "KullanÄ±m AmacÄ±", aciklama: "AÃ§Ä±klama / Not", teslimDurumu: "Teslim Durumu",
+    cekNo: "Ã‡ek No", banka: "Banka", sube: "Åube", vadeTarihi: "Vade Tarihi", borclu: "BorÃ§lu", alacakli: "AlacaklÄ±",
   };
   return map[key] || key;
 }
@@ -1025,15 +1025,16 @@ function statusCell(key) {
 
 function selectOptions(field, module) {
   if (field === "durum" && (module === "orders" || module === "offers")) {
-    return ["Hazırlanıyor", "Teslim Edildi", "Bekliyor", "Gecikti", "İptal"];
+    return ["HazÄ±rlanÄ±yor", "Teslim Edildi", "Bekliyor", "Gecikti", "Ä°ptal"];
   }
   if (field === "durum") {
-    return ["Aktif", "Bekliyor", "Planlandı", "Uygulandı", "Kritik", "Takipte", "Tamamlandı"];
+    return ["Aktif", "Bekliyor", "PlanlandÄ±", "UygulandÄ±", "Kritik", "Takipte", "TamamlandÄ±"];
   }
   if (field === "teslimDurumu") {
-    return ["Teslim Edildi", "Bekliyor", "Gecikti", "İade"];
+    return ["Teslim Edildi", "Bekliyor", "Gecikti", "Ä°ade"];
   }
   return null;
 }
 
 export default App;
+
